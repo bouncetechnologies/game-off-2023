@@ -58,3 +58,6 @@ scale = Vector2(1.00704, 0.992537)
 sprite_frames = SubResource("SpriteFrames_a6hdj")
 frame = 3
 frame_progress = 0.752382
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(38, 0)

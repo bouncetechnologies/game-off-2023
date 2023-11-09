@@ -22,7 +22,7 @@ position = Vector2(849, -1296)
 rotation = 1.5708
 
 [node name="Ground8" parent="Level" instance=ExtResource("2_m7ji4")]
-position = Vector2(2921, -159)
+position = Vector2(2437, -162)
 rotation = 1.5708
 
 [node name="Ground3" parent="Level" instance=ExtResource("2_m7ji4")]
@@ -33,13 +33,13 @@ rotation = 1.5708
 position = Vector2(-576, 0)
 
 [node name="Ground6" parent="Level" instance=ExtResource("2_m7ji4")]
-position = Vector2(2030, 0)
+position = Vector2(1880, -1)
 
 [node name="Ground9" parent="Level" instance=ExtResource("2_m7ji4")]
-position = Vector2(4601, -6)
+position = Vector2(4380, 7)
 
 [node name="Ground7" parent="Level" instance=ExtResource("2_m7ji4")]
-position = Vector2(3201, -5)
+position = Vector2(3049, -5)
 rotation = -0.418879
 
 [node name="Ground5" parent="Level" instance=ExtResource("2_m7ji4")]

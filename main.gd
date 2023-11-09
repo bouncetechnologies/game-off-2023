@@ -39,10 +39,12 @@ func _process(delta):
 	if Input.is_action_pressed("ui_text_submit"):
 		start()
 		
+	
+		
 	if started:
 		var walls = level.get_children()
 		for wall in walls:
-			wall.position.x -= 3
+			wall.position.x -= 4
 #		level.position.x -= 3
 
 func start():
