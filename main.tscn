@@ -11,17 +11,18 @@ script = ExtResource("1_706ib")
 position = Vector2(214, 306)
 
 [node name="Level" type="Node2D" parent="."]
+position = Vector2(1, 646)
 
 [node name="Ground2" parent="Level" instance=ExtResource("2_m7ji4")]
-position = Vector2(1005, -649)
+position = Vector2(323, -1268)
 rotation = 1.5708
 
 [node name="Ground" parent="Level" instance=ExtResource("2_m7ji4")]
 
 [node name="Ground4" parent="Level" instance=ExtResource("2_m7ji4")]
-position = Vector2(1426, -653)
+position = Vector2(849, -1296)
 rotation = 1.5708
 
 [node name="Ground3" parent="Level" instance=ExtResource("2_m7ji4")]
-position = Vector2(1302, 376)
+position = Vector2(642, -343)
 rotation = 1.5708
