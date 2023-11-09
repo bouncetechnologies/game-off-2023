@@ -1,0 +1,50 @@
+name: Godot Build and Publish to Itch.io
+
+on:
+  push:
+    tags:
+      - v*
+
+env:
+  itch_io_project: account/project-name
+  itch_io_channel: win
+
+jobs:
+  exports:
+    name: Build, Release, and Upload
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          lfs: true
+      - name: Copy export preset config
+        run: cp ./export_presets_gh.cfg ./export_presets.cfg
+      - name: Export game
+        id: export
+        # Use latest version (see releases for all versions)
+        uses: firebelley/godot-export@v5.2.0
+        with:
+          # Defining all the required inputs
+          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.1/Godot_v4.1-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.1/Godot_v4.1-stable_export_templates.tpz
+          relative_project_path: ./
+      - uses: actions/upload-artifact@v3
+        with:
+          name: exported-game
+          path: ${{ steps.export.outputs.build_directory }}
+      - uses: actions/download-artifact@v3
+        with:
+          name: exported-game
+          path: ./build
+      - name: Set Version
+        run: |
+          echo "version=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+      - name: Upload Godot build to itch.io project
+        uses: robpc/itchio-upload-action@v1
+        with:
+          path: ./build
+          project: ${{ env.itch_io_project }}
+          channel: ${{ env.itch_io_channel }}
+          api-key: ${{ secrets.ITCH_IO_API_KEY }}
+          version: ${{ env.version }}
