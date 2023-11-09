@@ -1,0 +1,18 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dwsyf3n6k7y6f"]
+
+[ext_resource type="Texture2D" uid="uid://o0tampaek4xx" path="res://pattern/Default size/pattern_17.png" id="2_g3trd"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u2pf2"]
+resource_name = "wall2"
+texture = ExtResource("2_g3trd")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+
+[resource]
+tile_size = Vector2i(256, 256)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.501961, 0.345098, 0.25098, 1)
+sources/2 = SubResource("TileSetAtlasSource_u2pf2")
