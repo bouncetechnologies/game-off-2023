@@ -8,21 +8,39 @@
 script = ExtResource("1_706ib")
 
 [node name="Player" parent="." instance=ExtResource("1_lc8ti")]
-position = Vector2(214, 306)
+position = Vector2(578, 565)
 
 [node name="Level" type="Node2D" parent="."]
-position = Vector2(1, 646)
+position = Vector2(577, 646)
 
 [node name="Ground2" parent="Level" instance=ExtResource("2_m7ji4")]
 position = Vector2(323, -1268)
 rotation = 1.5708
 
-[node name="Ground" parent="Level" instance=ExtResource("2_m7ji4")]
-
 [node name="Ground4" parent="Level" instance=ExtResource("2_m7ji4")]
 position = Vector2(849, -1296)
+rotation = 1.5708
+
+[node name="Ground8" parent="Level" instance=ExtResource("2_m7ji4")]
+position = Vector2(2921, -159)
 rotation = 1.5708
 
 [node name="Ground3" parent="Level" instance=ExtResource("2_m7ji4")]
 position = Vector2(642, -343)
 rotation = 1.5708
+
+[node name="Ground" parent="Level" instance=ExtResource("2_m7ji4")]
+position = Vector2(-576, 0)
+
+[node name="Ground6" parent="Level" instance=ExtResource("2_m7ji4")]
+position = Vector2(2030, 0)
+
+[node name="Ground9" parent="Level" instance=ExtResource("2_m7ji4")]
+position = Vector2(4601, -6)
+
+[node name="Ground7" parent="Level" instance=ExtResource("2_m7ji4")]
+position = Vector2(3201, -5)
+rotation = -0.418879
+
+[node name="Ground5" parent="Level" instance=ExtResource("2_m7ji4")]
+position = Vector2(576, 0)
