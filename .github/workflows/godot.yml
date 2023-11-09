@@ -6,7 +6,7 @@ on:
       - v*
 
 env:
-  itch_io_project: account/project-name
+  itch_io_project: bouncetechnologies/game-off-2023
   itch_io_channel: win
 
 jobs:
