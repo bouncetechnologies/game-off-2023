@@ -48,18 +48,18 @@ func _process(delta):
 	else :
 		_animated_sprite.stop()
 		
-	if Input.is_action_pressed("ui_up"):
-		if self.scale.x < SCALE_MAX:
-			self.scale.x += SCALE_STEP
-		if self.scale.y < SCALE_MAX:
-			self.scale.y += SCALE_STEP
-		if jump_velocity < JUMP_MAX:
-			jump_velocity += JUMP_STEP
-	if Input.is_action_pressed("ui_down"):
-		if self.scale.x > SCALE_MIN:
-			self.scale.x -= SCALE_STEP
-		if self.scale.y > SCALE_MIN:
-			self.scale.y -= SCALE_STEP
-		if jump_velocity > JUMP_MIN:
-			jump_velocity -= JUMP_STEP
+#	if Input.is_action_pressed("ui_up"):
+#		if self.scale.x < SCALE_MAX:
+#			self.scale.x += SCALE_STEP
+#		if self.scale.y < SCALE_MAX:
+#			self.scale.y += SCALE_STEP
+#		if jump_velocity < JUMP_MAX:
+#			jump_velocity += JUMP_STEP
+#	if Input.is_action_pressed("ui_down"):
+#		if self.scale.x > SCALE_MIN:
+#			self.scale.x -= SCALE_STEP
+#		if self.scale.y > SCALE_MIN:
+#			self.scale.y -= SCALE_STEP
+#		if jump_velocity > JUMP_MIN:
+#			jump_velocity -= JUMP_STEP
  
