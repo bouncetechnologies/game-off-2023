@@ -2,39 +2,50 @@ extends Node2D
 
 @onready var level = $Level
 
-const SCALE_MIN = 0.3
-const SCALE_MAX = 1
-const SCALE_STEP = 0.01
+const SCALE_MIN = Vector2(0.3, 0.3)
+const SCALE_MAX = Vector2(1, 1)
+const SCALE_STEP = Vector2(0.01, 0.01)
 
-var started = false
+var wall_position_step = 4
+
+var walls_moving = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	level.scale = SCALE_MAX
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_pressed("ui_up"):
-		if level.scale.x < SCALE_MAX:
-			level.scale.x += SCALE_STEP
-		if level.scale.y < SCALE_MAX:
-			level.scale.y += SCALE_STEP
-
-	if Input.is_action_pressed("ui_down"):
-		if level.scale.x > SCALE_MIN:
-			level.scale.x -= SCALE_STEP
-		if level.scale.y > SCALE_MIN:
-			level.scale.y -= SCALE_STEP
+		if level.scale < SCALE_MAX:
+			level.scale += SCALE_STEP
+			wall_position_step += 0.02
+			wall_position_step = clamp(wall_position_step, 0, 4)
+	elif Input.is_action_pressed("ui_down"):
+		if level.scale > SCALE_MIN:
+			level.scale -= SCALE_STEP
+			wall_position_step -= 0.02
+			wall_position_step = clamp(wall_position_step, 0, 4)
+	else:
+		wall_position_step = 4
 
 	if Input.is_action_pressed("ui_text_submit"):
 		start()
 		
-	if started:
+	if walls_moving:
 		var walls = level.get_children()
 		for wall in walls:
-			wall.position.x -= 2
+			wall.position.x -= wall_position_step
 
 
 func start():
-	started = true
+	walls_moving = true
+
+
+func _on_player_collision_in_front():
+	walls_moving = false
+
+
+func _on_player_no_collision_in_front():
+	walls_moving = true

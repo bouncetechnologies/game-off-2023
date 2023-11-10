@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+signal collision_in_front
+signal no_collision_in_front
+
+const SPEED = 150.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -10,6 +13,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var jump_velocity = 400
 var started = false
 var base_x_position = null
+
+var collision_signal_sent = false
 
 func _ready():
 	base_x_position = self.position.x
@@ -26,9 +31,16 @@ func _physics_process(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = -(jump_velocity)
+		
+	if not collision_signal_sent and $RayCast2D.is_colliding():
+		collision_in_front.emit()
+		collision_signal_sent = true
+	elif collision_signal_sent and not $RayCast2D.is_colliding():
+		no_collision_in_front.emit()
+		collision_signal_sent = false
 
 	if base_x_position > self.position.x:
-		velocity.x = SPEED / 2
+		velocity.x = SPEED
 	else:
 		velocity.x = 0
 

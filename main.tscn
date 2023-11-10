@@ -14,7 +14,7 @@ position = Vector2(576, 565)
 position = Vector2(576, 592)
 
 [node name="Ground2" parent="Level" instance=ExtResource("2_m7ji4")]
-position = Vector2(322, -1220)
+position = Vector2(320, -1216)
 rotation = 1.5708
 
 [node name="Ground4" parent="Level" instance=ExtResource("2_m7ji4")]
@@ -44,3 +44,6 @@ rotation = -0.418879
 
 [node name="Ground5" parent="Level" instance=ExtResource("2_m7ji4")]
 position = Vector2(575, 48)
+
+[connection signal="collision_in_front" from="Player" to="." method="_on_player_collision_in_front"]
+[connection signal="no_collision_in_front" from="Player" to="." method="_on_player_no_collision_in_front"]
