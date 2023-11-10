@@ -33,7 +33,7 @@ func _process(delta):
 	if started:
 		var walls = level.get_children()
 		for wall in walls:
-			wall.position.x -= 4
+			wall.position.x -= 2
 
 
 func start():
