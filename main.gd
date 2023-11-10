@@ -20,32 +20,21 @@ func _process(delta):
 			level.scale.x += SCALE_STEP
 		if level.scale.y < SCALE_MAX:
 			level.scale.y += SCALE_STEP
-			
-		
 
 	if Input.is_action_pressed("ui_down"):
 		if level.scale.x > SCALE_MIN:
 			level.scale.x -= SCALE_STEP
 		if level.scale.y > SCALE_MIN:
 			level.scale.y -= SCALE_STEP
-			
-#		level.position.x -= SCALE_STEP
-		
-#	if Input.is_action_pressed("ui_right"):
-#		level.position.x += 3
-#
-#	if Input.is_action_pressed("ui_left"):
-#		level.position.x -= 3
+
 	if Input.is_action_pressed("ui_text_submit"):
 		start()
-		
-	
 		
 	if started:
 		var walls = level.get_children()
 		for wall in walls:
 			wall.position.x -= 4
-#		level.position.x -= 3
+
 
 func start():
 	started = true
