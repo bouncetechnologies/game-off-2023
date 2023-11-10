@@ -15,7 +15,10 @@ func _ready():
 	base_x_position = self.position.x
 
 
-func _physics_process(delta):
+func _physics_process(delta):	
+	if position.y > 650:
+		get_tree().paused = true
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
