@@ -27,6 +27,7 @@ func _physics_process(delta):
 		camera.zoom.x = initial_zoom.x * 1.0/scale.x
 		camera.zoom.y = initial_zoom.y * 1.0/scale.y
 		velocity = Vector2.ZERO
+		move_and_slide()
 		return
 	elif Input.is_action_pressed("scale_down") and scale.x > MIN_SCALE:
 		scale.x = clamp(scale.x - SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
@@ -34,6 +35,7 @@ func _physics_process(delta):
 		camera.zoom.x = initial_zoom.x * 1.0/scale.x
 		camera.zoom.y = initial_zoom.y * 1.0/scale.y
 		velocity = Vector2.ZERO
+		move_and_slide()
 		return
 		
 	# Add the gravity.
