@@ -20,6 +20,9 @@ func _ready():
 
 
 func _physics_process(delta):
+	if position.y > 800:
+		get_tree().paused = true
+	
 	# Handle scaling
 	if Input.is_action_pressed("scale_up") and scale.x < MAX_SCALE:
 		scale.x = clamp(scale.x + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)

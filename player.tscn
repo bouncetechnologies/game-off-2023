@@ -6,8 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bfjjqpwh213yf" path="res://assets/run cycle 48x48.png" id="3_rbeft"]
 [ext_resource type="Texture2D" uid="uid://b0ipser33tkm5" path="res://assets/player land 48x48.png" id="4_5rr7n"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_38vgs"]
-size = Vector2(26, 29.75)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmncq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cbehb"]
 atlas = ExtResource("2_3y6ko")
@@ -252,13 +251,13 @@ script = ExtResource("1_mmrc5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.875)
-shape = SubResource("RectangleShape2D_38vgs")
+shape = SubResource("CapsuleShape2D_kmncq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-7.15256e-07, -4.76837e-07)
 scale = Vector2(1.00704, 0.992537)
 sprite_frames = SubResource("SpriteFrames_a6hdj")
-animation = &"running"
+animation = &"idle"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false
