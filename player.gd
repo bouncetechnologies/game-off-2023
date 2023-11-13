@@ -20,9 +20,23 @@ func _ready():
 
 
 func _physics_process(delta):
+	# Handle scaling
+	if Input.is_action_pressed("scale_up") and scale.x < MAX_SCALE:
+		scale.x = clamp(scale.x + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
+		scale.y = clamp(scale.y + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
+		camera.zoom.x = initial_zoom.x * 1.0/scale.x
+		camera.zoom.y = initial_zoom.y * 1.0/scale.y
+		return
+	elif Input.is_action_pressed("scale_down") and scale.x > MIN_SCALE:
+		scale.x = clamp(scale.x - SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
+		scale.y = clamp(scale.y - SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
+		camera.zoom.x = initial_zoom.x * 1.0/scale.x
+		camera.zoom.y = initial_zoom.y * 1.0/scale.y
+		return
+		
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * scale.y * delta
+		velocity.y += gravity * delta * scale.y
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -33,18 +47,6 @@ func _physics_process(delta):
 		animated_sprite.flip_h = true
 	elif direction == 1:
 		animated_sprite.flip_h = false
-		
-	# Handle scaling
-	if Input.is_action_pressed("scale_up"):
-		scale.x = clamp(scale.x + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
-		scale.y = clamp(scale.y + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
-		camera.zoom.x = initial_zoom.x * 1.0/scale.x
-		camera.zoom.y = initial_zoom.y * 1.0/scale.y
-	elif Input.is_action_pressed("scale_down"):
-		scale.x = clamp(scale.x - SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
-		scale.y = clamp(scale.y - SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
-		camera.zoom.x = initial_zoom.x * 1.0/scale.x
-		camera.zoom.y = initial_zoom.y * 1.0/scale.y
 
 	# Handle applying forward velocity
 	if direction:
