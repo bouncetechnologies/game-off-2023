@@ -22,9 +22,7 @@ func _ready():
 func _physics_process(delta):
 	var collider_left = $RayCastLeft.get_collider()
 	var collider_right = $RayCastRight.get_collider()
-	if collider_left and collider_left.is_in_group("kill_wall"):
-		get_tree().reload_current_scene()
-	if collider_right and collider_right.is_in_group("kill_wall"):
+	if collider_left and collider_left.is_in_group("kill_wall") or collider_right and collider_right.is_in_group("kill_wall"):
 		get_tree().reload_current_scene()
 	
 	if position.y > 800:
