@@ -26,12 +26,14 @@ func _physics_process(delta):
 		scale.y = clamp(scale.y + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
 		camera.zoom.x = initial_zoom.x * 1.0/scale.x
 		camera.zoom.y = initial_zoom.y * 1.0/scale.y
+		velocity = Vector2.ZERO
 		return
 	elif Input.is_action_pressed("scale_down") and scale.x > MIN_SCALE:
 		scale.x = clamp(scale.x - SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
 		scale.y = clamp(scale.y - SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
 		camera.zoom.x = initial_zoom.x * 1.0/scale.x
 		camera.zoom.y = initial_zoom.y * 1.0/scale.y
+		velocity = Vector2.ZERO
 		return
 		
 	# Add the gravity.
@@ -50,7 +52,7 @@ func _physics_process(delta):
 
 	# Handle applying forward velocity
 	if direction:
-		velocity.x = direction * SPEED * scale.x
+		velocity.x = direction * SPEED * sqrt(scale.x)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
