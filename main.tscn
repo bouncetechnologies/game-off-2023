@@ -484,7 +484,7 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="MovingWall" parent="." instance=ExtResource("3_r4j8k")]
-position = Vector2(0, 400)
+position = Vector2(-8, 520)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
