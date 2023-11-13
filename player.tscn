@@ -259,6 +259,13 @@ scale = Vector2(1.00704, 0.992537)
 sprite_frames = SubResource("SpriteFrames_a6hdj")
 animation = &"idle"
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-visible = false
-target_position = Vector2(38, 0)
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-12, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+rotation = 3.14159
+target_position = Vector2(-12, 0)
+
+[node name="RayCastUp" type="RayCast2D" parent="."]
+rotation = 1.5708
+target_position = Vector2(-16, 6.99382e-07)

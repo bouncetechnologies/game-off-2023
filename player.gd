@@ -20,11 +20,18 @@ func _ready():
 
 
 func _physics_process(delta):
+	var collider_left = $RayCastLeft.get_collider()
+	var collider_right = $RayCastRight.get_collider()
+	if collider_left and collider_left.is_in_group("kill_wall"):
+		get_tree().paused = true
+	if collider_right and collider_right.is_in_group("kill_wall"):
+		get_tree().paused = true
+	
 	if position.y > 800:
 		get_tree().paused = true
 	
 	# Handle scaling
-	if Input.is_action_pressed("scale_up") and scale.x < MAX_SCALE:
+	if Input.is_action_pressed("scale_up") and scale.x < MAX_SCALE and not $RayCastUp.is_colliding():
 		scale.x = clamp(scale.x + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
 		scale.y = clamp(scale.y + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
 		camera.zoom.x = initial_zoom.x * 1.0/scale.x
