@@ -3,8 +3,13 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+const MIN_SCALE = 1
+const MAX_SCALE = 10
+const SCALE_INCREMENT = 0.1
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var camera = get_parent().get_node("Camera2D")
+@onready var initial_zoom = get_parent().get_node("Camera2D").zoom
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -28,16 +33,29 @@ func _physics_process(delta):
 		animated_sprite.flip_h = true
 	elif direction == 1:
 		animated_sprite.flip_h = false
-	
+		
+	# Handle scaling
+	if Input.is_action_pressed("scale_up"):
+		scale.x = clamp(scale.x + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
+		scale.y = clamp(scale.y + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
+		camera.zoom.x = initial_zoom.x * 1.0/scale.x
+		camera.zoom.y = initial_zoom.y * 1.0/scale.y
+	elif Input.is_action_pressed("scale_down"):
+		scale.x = clamp(scale.x - SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
+		scale.y = clamp(scale.y - SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
+		camera.zoom.x = initial_zoom.x * 1.0/scale.x
+		camera.zoom.y = initial_zoom.y * 1.0/scale.y
+
+	print(scale, camera.zoom)
 	# Handle applying forward velocity
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * SPEED * scale.x
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	# Handle jump ascend
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		velocity.y = JUMP_VELOCITY * scale.y
 		animated_sprite.play("jump_ascending")
 		is_jumping = true
 		
