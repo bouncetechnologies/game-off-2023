@@ -22,7 +22,7 @@ func _ready():
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += gravity * scale.y * delta
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -46,7 +46,6 @@ func _physics_process(delta):
 		camera.zoom.x = initial_zoom.x * 1.0/scale.x
 		camera.zoom.y = initial_zoom.y * 1.0/scale.y
 
-	print(scale, camera.zoom)
 	# Handle applying forward velocity
 	if direction:
 		velocity.x = direction * SPEED * scale.x
