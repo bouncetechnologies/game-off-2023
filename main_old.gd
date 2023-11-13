@@ -5,8 +5,9 @@ extends Node2D
 const SCALE_MIN = Vector2(0.3, 0.3)
 const SCALE_MAX = Vector2(1, 1)
 const SCALE_STEP = Vector2(0.01, 0.01)
+const WALL_POSITION_STEP_MAX = 20
 
-var wall_position_step = 4
+var wall_position_step = 10
 
 var walls_moving = false
 
@@ -16,17 +17,17 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	if Input.is_action_pressed("ui_up"):
 		if level.scale < SCALE_MAX:
 			level.scale += SCALE_STEP
 			wall_position_step += 0.02
-			wall_position_step = clamp(wall_position_step, 0, 4)
+			wall_position_step = clamp(wall_position_step, 0, WALL_POSITION_STEP_MAX)
 	elif Input.is_action_pressed("ui_down"):
 		if level.scale > SCALE_MIN:
 			level.scale -= SCALE_STEP
 			wall_position_step -= 0.02
-			wall_position_step = clamp(wall_position_step, 0, 4)
+			wall_position_step = clamp(wall_position_step, 0, WALL_POSITION_STEP_MAX)
 	else:
 		wall_position_step = 4
 

@@ -1,59 +1,62 @@
 extends CharacterBody2D
 
-signal collision_in_front
-signal no_collision_in_front
 
-const SPEED = 150.0
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+
+@onready var animated_sprite = $AnimatedSprite2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-@onready var _animated_sprite = $AnimatedSprite2D
-
-var jump_velocity = 400
-var started = false
-var base_x_position = null
-
-var collision_signal_sent = false
+var is_jumping = false
 
 func _ready():
-	base_x_position = self.position.x
+	animated_sprite.play("idle")
 
 
-func _physics_process(delta):	
-	if position.y > 650:
-		get_tree().paused = true
-	
+func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
-	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = -(jump_velocity)
-		
-	if not collision_signal_sent and $RayCast2D.is_colliding():
-		collision_in_front.emit()
-		collision_signal_sent = true
-	elif collision_signal_sent and not $RayCast2D.is_colliding():
-		no_collision_in_front.emit()
-		collision_signal_sent = false
-
-	if base_x_position > self.position.x:
-		velocity.x = SPEED
+	
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction = Input.get_axis("ui_left", "ui_right")
+	
+	# Handle facing sprite
+	if direction == -1:
+		animated_sprite.flip_h = true
+	elif direction == 1:
+		animated_sprite.flip_h = false
+	
+	# Handle applying forward velocity
+	if direction:
+		velocity.x = direction * SPEED
 	else:
-		velocity.x = 0
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	# Handle jump ascend
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		animated_sprite.play("jump_ascending")
+		is_jumping = true
+		
+	# Handle jump descend
+	elif velocity.y > 0:
+		animated_sprite.play("jump_descending")
+		
+	# Handle jump land
+	elif is_jumping and is_on_floor():
+		animated_sprite.play("jump_land")
+		is_jumping = false
+
+	# Handle running
+	elif direction and not is_jumping:
+		animated_sprite.play("running")
+	
+	# Handle idle
+	elif not is_jumping:
+		if not (animated_sprite.animation == "jump_land" and animated_sprite.is_playing()):
+			animated_sprite.play("idle")
 
 	move_and_slide()
-
-
-func _process(delta):
-	if Input.is_action_pressed("ui_text_submit"):
-		start()
-		
-	if started:
-		_animated_sprite.play("default")
-
-
-func start():
-	started = true
