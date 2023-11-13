@@ -23,12 +23,12 @@ func _physics_process(delta):
 	var collider_left = $RayCastLeft.get_collider()
 	var collider_right = $RayCastRight.get_collider()
 	if collider_left and collider_left.is_in_group("kill_wall"):
-		get_tree().paused = true
+		get_tree().reload_current_scene()
 	if collider_right and collider_right.is_in_group("kill_wall"):
-		get_tree().paused = true
+		get_tree().reload_current_scene()
 	
 	if position.y > 800:
-		get_tree().paused = true
+		get_tree().reload_current_scene()
 	
 	# Handle scaling
 	if Input.is_action_pressed("scale_up") and scale.x < MAX_SCALE and not $RayCastUp.is_colliding():
