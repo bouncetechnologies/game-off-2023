@@ -342,6 +342,7 @@ target_position = Vector2(-16, 6.99382e-07)
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_anbsy")
 volume_db = 1.0
+pitch_scale = 0.78
 
 [node name="Scale" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_jl542")
