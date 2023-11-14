@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://vmf8vril5fux"]
+[gd_scene load_steps=49 format=3 uid="uid://vmf8vril5fux"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_mmrc5"]
 [ext_resource type="Texture2D" uid="uid://dtg21fsy6mglx" path="res://assets/Character Idle 48x48.png" id="2_3y6ko"]
@@ -8,9 +8,38 @@
 [ext_resource type="AudioStream" uid="uid://cet6bbuyoggbf" path="res://assets/BLUELIGHTS.wav" id="6_anbsy"]
 [ext_resource type="AudioStream" uid="uid://yuje5ffted5v" path="res://assets/SOLARLAMP.wav" id="7_jl542"]
 [ext_resource type="Shader" path="res://player.gdshader" id="8_lwd6l"]
-[ext_resource type="Texture2D" uid="uid://d1u88ia7eysff" path="res://assets/pixel.png" id="9_x7wlr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmncq"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wirpp"]
+seed = 2
+frequency = 1.0
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1wy56"]
+width = 336
+height = 336
+as_normal_map = true
+noise = SubResource("FastNoiseLite_wirpp")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dusqk"]
+noise_type = 0
+seed = 4
+frequency = 1.0
+offset = Vector3(2.08167e-14, 2.08167e-14, 2.08167e-14)
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ye4xh"]
+width = 336
+height = 336
+noise = SubResource("FastNoiseLite_dusqk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fd3oc"]
+shader = ExtResource("8_lwd6l")
+shader_parameter/progress = 0.0
+shader_parameter/strength = 0.07
+shader_parameter/noise_tex_normal = SubResource("NoiseTexture2D_ye4xh")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_1wy56")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cbehb"]
 atlas = ExtResource("2_3y6ko")
@@ -250,48 +279,40 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_glcco"]
-shader = ExtResource("8_lwd6l")
-shader_parameter/direction = Vector3(1, 0, 0)
-shader_parameter/spread = 45.0
-shader_parameter/flatness = 0.0
-shader_parameter/inherit_emitter_velocity_ratio = 0.0
-shader_parameter/initial_linear_velocity_min = 0.0
-shader_parameter/initial_linear_velocity_max = 0.0
-shader_parameter/directional_velocity_min = 1.0
-shader_parameter/directional_velocity_max = 1.0
-shader_parameter/angular_velocity_min = 0.0
-shader_parameter/angular_velocity_max = 0.0
-shader_parameter/orbit_velocity_min = 0.0
-shader_parameter/orbit_velocity_max = 0.0
-shader_parameter/radial_velocity_min = null
-shader_parameter/radial_velocity_max = null
-shader_parameter/linear_accel_min = 0.0
-shader_parameter/linear_accel_max = 0.0
-shader_parameter/radial_accel_min = 0.0
-shader_parameter/radial_accel_max = 0.0
-shader_parameter/tangent_accel_min = 0.0
-shader_parameter/tangent_accel_max = 0.0
-shader_parameter/damping_min = 0.0
-shader_parameter/damping_max = 0.0
-shader_parameter/initial_angle_min = 0.0
-shader_parameter/initial_angle_max = 0.0
-shader_parameter/scale_min = 1.0
-shader_parameter/scale_max = 1.0
-shader_parameter/hue_variation_min = 0.0
-shader_parameter/hue_variation_max = 0.0
-shader_parameter/anim_speed_min = 0.0
-shader_parameter/anim_speed_max = 0.0
-shader_parameter/anim_offset_min = 0.0
-shader_parameter/anim_offset_max = 0.0
-shader_parameter/lifetime_randomness = 0.0
-shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
-shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
-shader_parameter/velocity_pivot = Vector3(0, 0, 0)
-shader_parameter/emission_box_extents = Vector3(30, 30, 1)
-shader_parameter/color_value = Color(1, 1, 1, 1)
-shader_parameter/gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
-shader_parameter/sprite = ExtResource("3_mustq")
+[sub_resource type="Animation" id="Animation_kp6va"]
+resource_name = "disolve"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="Animation" id="Animation_ofc4n"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_35lyt"]
+_data = {
+"RESET": SubResource("Animation_ofc4n"),
+"disolve": SubResource("Animation_kp6va")
+}
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mmrc5")
@@ -301,6 +322,7 @@ position = Vector2(0, 0.875)
 shape = SubResource("CapsuleShape2D_kmncq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_fd3oc")
 position = Vector2(-7.15256e-07, -4.76837e-07)
 scale = Vector2(1.00704, 0.992537)
 sprite_frames = SubResource("SpriteFrames_a6hdj")
@@ -325,7 +347,7 @@ volume_db = 1.0
 stream = ExtResource("7_jl542")
 volume_db = 15.0
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 4000
-process_material = SubResource("ShaderMaterial_glcco")
-texture = ExtResource("9_x7wlr")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_35lyt")
+}

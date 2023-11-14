@@ -18,6 +18,7 @@ var dead = false
 
 func _ready():
 	animated_sprite.play("idle")
+	$AnimatedSprite2D.play_backwards("disolve")
 
 
 func _physics_process(delta):
@@ -26,15 +27,19 @@ func _physics_process(delta):
 	if dead and not $Death.is_playing():
 		dead = false
 		get_tree().reload_current_scene()
+
+		
 	elif dead:
 		return
 		
 	if collider_left and collider_left.is_in_group("kill_wall") or collider_right and collider_right.is_in_group("kill_wall"):
 		$Death.play()
+		$AnimationPlayer.play("disolve")
 		dead = true
 	
 	if position.y > 800:
 		$Death.play()
+		$AnimationPlayer.play("disolve")		
 		dead = true
 		
 		
