@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal died
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -37,16 +38,13 @@ func _physics_process(delta):
 		$Death.play()
 		$AnimationPlayer.play("disolve")
 		dead = true
+		died.emit()
 	
 	if position.y > 800:
 		$Death.play()
-		$AnimationPlayer.play("disolve")		
+		$AnimationPlayer.play("disolve")
 		dead = true
-		
-		
-
-		
-		
+		died.emit()
 		
 	
 	# Handle scaling
