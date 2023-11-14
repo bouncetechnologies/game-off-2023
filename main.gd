@@ -13,7 +13,7 @@ func _process(delta):
 	
 	
 func _physics_process(delta):
-	if wall_should_move:
+	if wall_should_move and not $Player.dead:
 		$MovingWall.position.x += delta * 100
 
 
