@@ -19,9 +19,8 @@ var dead = false
 func _ready():
 	animated_sprite.play("idle")
 	$AnimationPlayer.play_backwards("disolve")
+	$Life.play()
 	
-
-
 
 func _physics_process(delta):
 	var collider_left = $RayCastLeft.get_collider()

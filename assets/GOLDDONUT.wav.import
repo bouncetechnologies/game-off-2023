@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cet6bbuyoggbf"
-path="res://.godot/imported/BLUELIGHTS.wav-21ea6081e6e5cf884ef7d2a5c615333a.sample"
+uid="uid://dwh18jhe1y0de"
+path="res://.godot/imported/GOLDDONUT.wav-7256d8b4a84bafc42e4787997fae0f55.sample"
 
 [deps]
 
-source_file="res://assets/BLUELIGHTS.wav"
-dest_files=["res://.godot/imported/BLUELIGHTS.wav-21ea6081e6e5cf884ef7d2a5c615333a.sample"]
+source_file="res://assets/GOLDDONUT.wav"
+dest_files=["res://.godot/imported/GOLDDONUT.wav-7256d8b4a84bafc42e4787997fae0f55.sample"]
 
 [params]
 
