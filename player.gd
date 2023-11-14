@@ -14,6 +14,7 @@ const SCALE_INCREMENT = 0.1
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_jumping = false
+var dead = false
 
 func _ready():
 	animated_sprite.play("idle")
@@ -22,11 +23,25 @@ func _ready():
 func _physics_process(delta):
 	var collider_left = $RayCastLeft.get_collider()
 	var collider_right = $RayCastRight.get_collider()
-	if collider_left and collider_left.is_in_group("kill_wall") or collider_right and collider_right.is_in_group("kill_wall"):
+	if dead and not $Death.is_playing():
+		dead = false
 		get_tree().reload_current_scene()
+	elif dead:
+		return
+		
+	if collider_left and collider_left.is_in_group("kill_wall") or collider_right and collider_right.is_in_group("kill_wall"):
+		$Death.play()
+		dead = true
 	
 	if position.y > 800:
-		get_tree().reload_current_scene()
+		$Death.play()
+		dead = true
+		
+		
+
+		
+		
+		
 	
 	# Handle scaling
 	if Input.is_action_pressed("scale_up") and scale.x < MAX_SCALE and not $RayCastUp.is_colliding():
@@ -36,6 +51,8 @@ func _physics_process(delta):
 		camera.zoom.y = initial_zoom.y * 1.0/scale.y
 		velocity = Vector2.ZERO
 		move_and_slide()
+		$Scale.pitch_scale = 1.0/scale.x
+		$Scale.play()
 		return
 	elif Input.is_action_pressed("scale_down") and scale.x > MIN_SCALE:
 		scale.x = clamp(scale.x - SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
@@ -44,8 +61,11 @@ func _physics_process(delta):
 		camera.zoom.y = initial_zoom.y * 1.0/scale.y
 		velocity = Vector2.ZERO
 		move_and_slide()
+		$Scale.pitch_scale = 1.0/scale.x
+		$Scale.play()
 		return
-		
+	
+	$Scale.stop()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta * scale.y

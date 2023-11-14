@@ -1,10 +1,14 @@
-[gd_scene load_steps=38 format=3 uid="uid://vmf8vril5fux"]
+[gd_scene load_steps=43 format=3 uid="uid://vmf8vril5fux"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_mmrc5"]
 [ext_resource type="Texture2D" uid="uid://dtg21fsy6mglx" path="res://assets/Character Idle 48x48.png" id="2_3y6ko"]
 [ext_resource type="Texture2D" uid="uid://da0k5e78v4kqy" path="res://assets/player jump 48x48.png" id="3_mustq"]
 [ext_resource type="Texture2D" uid="uid://bfjjqpwh213yf" path="res://assets/run cycle 48x48.png" id="3_rbeft"]
 [ext_resource type="Texture2D" uid="uid://b0ipser33tkm5" path="res://assets/player land 48x48.png" id="4_5rr7n"]
+[ext_resource type="AudioStream" uid="uid://cet6bbuyoggbf" path="res://assets/BLUELIGHTS.wav" id="6_anbsy"]
+[ext_resource type="AudioStream" uid="uid://yuje5ffted5v" path="res://assets/SOLARLAMP.wav" id="7_jl542"]
+[ext_resource type="Shader" path="res://player.gdshader" id="8_lwd6l"]
+[ext_resource type="Texture2D" uid="uid://d1u88ia7eysff" path="res://assets/pixel.png" id="9_x7wlr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmncq"]
 
@@ -246,6 +250,49 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_glcco"]
+shader = ExtResource("8_lwd6l")
+shader_parameter/direction = Vector3(1, 0, 0)
+shader_parameter/spread = 45.0
+shader_parameter/flatness = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/initial_linear_velocity_min = 0.0
+shader_parameter/initial_linear_velocity_max = 0.0
+shader_parameter/directional_velocity_min = 1.0
+shader_parameter/directional_velocity_max = 1.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/radial_velocity_min = null
+shader_parameter/radial_velocity_max = null
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/scale_min = 1.0
+shader_parameter/scale_max = 1.0
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/anim_offset_max = 0.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/emission_box_extents = Vector3(30, 30, 1)
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+shader_parameter/sprite = ExtResource("3_mustq")
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mmrc5")
 
@@ -269,3 +316,16 @@ target_position = Vector2(-12, 0)
 [node name="RayCastUp" type="RayCast2D" parent="."]
 rotation = 1.5708
 target_position = Vector2(-16, 6.99382e-07)
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_anbsy")
+volume_db = 1.0
+
+[node name="Scale" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_jl542")
+volume_db = 15.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 4000
+process_material = SubResource("ShaderMaterial_glcco")
+texture = ExtResource("9_x7wlr")
