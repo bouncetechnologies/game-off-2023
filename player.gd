@@ -18,7 +18,9 @@ var dead = false
 
 func _ready():
 	animated_sprite.play("idle")
-	$AnimatedSprite2D.play_backwards("disolve")
+	$AnimationPlayer.play_backwards("disolve")
+	
+
 
 
 func _physics_process(delta):
