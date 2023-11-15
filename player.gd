@@ -30,8 +30,15 @@ func _ready():
 func _process(delta):
 	var player_frame = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation,$AnimatedSprite2D.get_frame())
 	$GPUParticles2D.texture = player_frame
-	$GPUParticles2D.process_material.set("scale_min", scale.x)
-	$GPUParticles2D.process_material.set("scale_max", scale.x)
+	var direction = Input.get_axis("move_left", "move_right")
+	
+	if direction == -1:
+		$GPUParticles2D.process_material.set("scale_min", -scale.x)
+		$GPUParticles2D.process_material.set("scale_max", -scale.x)
+		
+	elif direction == 1:
+		$GPUParticles2D.process_material.set("scale_min", scale.x)
+		$GPUParticles2D.process_material.set("scale_max", scale.x)
 
 func _physics_process(delta):
 	# Handle respawn
@@ -100,8 +107,11 @@ func _physics_process(delta):
 	# Handle facing sprite
 	if direction == -1:
 		animated_sprite.flip_h = true
+		#$GPUParticles2D.flip_h = true
 	elif direction == 1:
 		animated_sprite.flip_h = false
+		#$GPUParticles2D.flip_h = false
+		
 
 	# Handle applying forward velocity
 	if direction:
