@@ -30,6 +30,8 @@ func _ready():
 func _process(delta):
 	var player_frame = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation,$AnimatedSprite2D.get_frame())
 	$GPUParticles2D.texture = player_frame
+	$GPUParticles2D.process_material.set("scale_min", scale.x)
+	$GPUParticles2D.process_material.set("scale_max", scale.x)
 
 func _physics_process(delta):
 	# Handle respawn
