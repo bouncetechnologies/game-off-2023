@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://vmf8vril5fux"]
+[gd_scene load_steps=64 format=3 uid="uid://vmf8vril5fux"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_mmrc5"]
 [ext_resource type="Texture2D" uid="uid://dtg21fsy6mglx" path="res://assets/Character Idle 48x48.png" id="2_3y6ko"]
@@ -11,6 +11,20 @@
 [ext_resource type="Shader" path="res://player.gdshader" id="8_lwd6l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmncq"]
+
+[sub_resource type="Curve" id="Curve_k5kki"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.142384, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_c6jfb"]
+curve = SubResource("Curve_k5kki")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gmskj"]
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(-60, 2.08165e-12, 2.08165e-12)
+color = Color(0, 0, 0.882353, 1)
+alpha_curve = SubResource("CurveTexture_c6jfb")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wirpp"]
 seed = 2
@@ -404,6 +418,11 @@ script = ExtResource("1_mmrc5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.875)
 shape = SubResource("CapsuleShape2D_kmncq")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_gmskj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_fd3oc")
