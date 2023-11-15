@@ -442,3 +442,12 @@ libraries = {
 stream = SubResource("AudioStreamWAV_iql5g")
 volume_db = 1.0
 pitch_scale = 1.3
+
+[node name="JustWallJumpedTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RayCastWallJumpLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-24, 0)
+
+[node name="RayCastWallJumpRight" type="RayCast2D" parent="."]
+target_position = Vector2(24, 0)

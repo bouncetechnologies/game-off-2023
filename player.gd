@@ -6,9 +6,11 @@ signal died
 @export var SPEED_UP_INTERVAL = 50
 @export var SPEED_DOWN_INTERVAL = 30
 @export var SPEED_DOWN_INTERVAL_AIRBORNE = 7
-@export var SPEED_WALL_SLIDE = 35.0
+@export var SPEED_WALL_SLIDE_DESCEND = 35.0
 @export var SPEED_TERMINAL_VELOCITY = 300.0
 @export var JUMP_VELOCITY = -400.0
+@export var JUMP_VELOCITY_WALL_SLIDE = -300.0
+@export var JUMP_VELOCITY_WALL_SLIDE_X = -400
 @export var MIN_SCALE = 1
 @export var MAX_SCALE = 10
 @export var SCALE_INCREMENT = 0.1
@@ -21,6 +23,8 @@ signal died
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_jumping = false
 var dead = false
+var facing_direction = 1
+var last_wall_touched = 1
 
 func _ready():
 	animated_sprite.play("idle")
@@ -79,11 +83,11 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		var new_velocity_y = velocity.y + (gravity * delta * scale.y)
-		velocity.y = clamp(new_velocity_y, -INF, SPEED_TERMINAL_VELOCITY)
+		velocity.y = clamp(new_velocity_y, -INF, SPEED_TERMINAL_VELOCITY * scale.y)
 	
 	# Apply wall slide gravity modifier
 	if is_on_wall_only() and velocity.y >= 0:
-		velocity.y = SPEED_WALL_SLIDE
+		velocity.y = SPEED_WALL_SLIDE_DESCEND *sqrt(scale.y)
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -92,14 +96,34 @@ func _physics_process(delta):
 	# Handle facing sprite
 	if direction == -1:
 		animated_sprite.flip_h = true
+		# Store the facing direction so we know which direction to apply
+		# velocty for wall jumps
+		facing_direction = direction
 	elif direction == 1:
 		animated_sprite.flip_h = false
+		facing_direction = direction
 
-	# Handle applying forward velocity
+	# Handle applying horizontal velocity
 	if direction:
+		# Speed up
 		var new_velocity_x = direction * SPEED * sqrt(scale.x)
-		velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL)
+		if not is_on_wall_only() and $JustWallJumpedTimer.time_left == 0:
+			velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL)
+		else: # Timer running - we recently jumped off a wall
+			if direction == last_wall_touched:
+				# Player is trying to get back to the wall, so we slowly give
+				# them back control of the direction so they can't infinitely
+				# keep jumping up the wall.
+				var factor = pow((1 - $JustWallJumpedTimer.time_left), 2.0)
+				new_velocity_x = direction * -JUMP_VELOCITY_WALL_SLIDE_X * factor * sqrt(scale.x)
+				velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL)
+			else:
+				# Player is moving away from the wall, so we conserve the
+				# velocity from the wall jump without altering it.
+				pass
+
 	else:
+		# Slow down
 		if is_on_floor():
 			velocity.x = move_toward(velocity.x, 0, SPEED_DOWN_INTERVAL)
 		else:
@@ -110,11 +134,47 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY * scale.y
 		animated_sprite.play("jump_ascending")
 		is_jumping = true
-	
-	# Handle wall slide
-	elif is_on_wall_only():
+		
+	# Handle wall slide and jump on left wall
+	elif not is_on_floor() and $RayCastWallJumpLeft.is_colliding():
+		last_wall_touched = -1
+		
+		#animated_sprite.flip_h = true
 		if animated_sprite.animation != "wall_slide" and not animated_sprite.is_playing():
 			animated_sprite.play("wall_slide")
+		
+		# Handle wall jump
+		if Input.is_action_just_pressed("jump"):
+			velocity.y = JUMP_VELOCITY_WALL_SLIDE * sqrt(scale.y)
+			velocity.x = -JUMP_VELOCITY_WALL_SLIDE_X * sqrt(scale.x)
+			animated_sprite.flip_h = false
+			animated_sprite.play("jump_ascending")
+			is_jumping = true
+			$JustWallJumpedTimer.start()
+		
+	# Handle wall slide and jump on right wall
+	elif not is_on_floor() and $RayCastWallJumpRight.is_colliding():
+		last_wall_touched = 1
+		
+		#animated_sprite.flip_h = false
+		if animated_sprite.animation != "wall_slide" and not animated_sprite.is_playing():
+			animated_sprite.play("wall_slide")
+		
+		# Handle wall jump
+		if Input.is_action_just_pressed("jump"):
+			velocity.y = JUMP_VELOCITY_WALL_SLIDE * sqrt(scale.y)
+			velocity.x = JUMP_VELOCITY_WALL_SLIDE_X * sqrt(scale.x)
+			animated_sprite.flip_h = true
+			animated_sprite.play("jump_ascending")
+			is_jumping = true
+			$JustWallJumpedTimer.start()
+			
+	#elif not is_on_floor() and not is_on_wall():
+		## Off the wall, so play airborne animations
+		#if velocity.y <= 0:
+			#animated_sprite.play("jump_descending")
+		#else:
+			#animated_sprite.play("jump_ascending")
 	
 	# Handle jump descend
 	elif velocity.y > 0:
