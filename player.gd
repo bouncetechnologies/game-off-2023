@@ -2,11 +2,14 @@ extends CharacterBody2D
 
 signal died
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-const MIN_SCALE = 1
-const MAX_SCALE = 10
-const SCALE_INCREMENT = 0.1
+@export var SPEED = 300.0
+@export var SPEED_UP_INTERVAL = 50
+@export var SPEED_DOWN_INTERVAL = 30
+@export var SPEED_DOWN_INTERVAL_AIRBORNE = 7
+@export var JUMP_VELOCITY = -400.0
+@export var MIN_SCALE = 1
+@export var MAX_SCALE = 10
+@export var SCALE_INCREMENT = 0.1
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var camera = get_parent().get_node("Camera2D")
@@ -86,9 +89,13 @@ func _physics_process(delta):
 
 	# Handle applying forward velocity
 	if direction:
-		velocity.x = direction * SPEED * sqrt(scale.x)
+		var new_velocity_x = direction * SPEED * sqrt(scale.x)
+		velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if is_on_floor():
+			velocity.x = move_toward(velocity.x, 0, SPEED_DOWN_INTERVAL)
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED_DOWN_INTERVAL_AIRBORNE)
 
 	# Handle jump ascend
 	if Input.is_action_just_pressed("jump") and is_on_floor():
