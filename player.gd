@@ -6,6 +6,8 @@ signal died
 @export var SPEED_UP_INTERVAL = 50
 @export var SPEED_DOWN_INTERVAL = 30
 @export var SPEED_DOWN_INTERVAL_AIRBORNE = 7
+@export var SPEED_WALL_SLIDE = 35.0
+@export var SPEED_TERMINAL_VELOCITY = 300.0
 @export var JUMP_VELOCITY = -400.0
 @export var MIN_SCALE = 1
 @export var MAX_SCALE = 10
@@ -24,19 +26,20 @@ func _ready():
 	animated_sprite.play("idle")
 	$AnimationPlayer.play_backwards("disolve")
 	$Life.play()
-	
+
 
 func _physics_process(delta):
-	var collider_left = $RayCastLeft.get_collider()
-	var collider_right = $RayCastRight.get_collider()
+	# Handle respawn
 	if dead and not $Death.is_playing():
 		dead = false
 		get_tree().reload_current_scene()
-
-		
 	elif dead:
 		return
-		
+	
+	# Handle death conditions
+	var collider_left = $RayCastLeft.get_collider()
+	var collider_right = $RayCastRight.get_collider()
+	
 	if collider_left and collider_left.is_in_group("kill_wall") or collider_right and collider_right.is_in_group("kill_wall"):
 		$Death.play()
 		$AnimationPlayer.play("disolve")
@@ -48,7 +51,6 @@ func _physics_process(delta):
 		$AnimationPlayer.play("disolve")
 		dead = true
 		died.emit()
-		
 	
 	# Handle scaling
 	if Input.is_action_pressed("scale_up") and scale.x < MAX_SCALE and not $RayCastUp.is_colliding():
@@ -71,11 +73,17 @@ func _physics_process(delta):
 		$Scale.pitch_scale = 1.0/scale.x
 		$Scale.play()
 		return
+	else:
+		$Scale.stop()
 	
-	$Scale.stop()
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta * scale.y
+		var new_velocity_y = velocity.y + (gravity * delta * scale.y)
+		velocity.y = clamp(new_velocity_y, -INF, SPEED_TERMINAL_VELOCITY)
+	
+	# Apply wall slide gravity modifier
+	if is_on_wall_only() and velocity.y >= 0:
+		velocity.y = SPEED_WALL_SLIDE
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -102,7 +110,12 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY * scale.y
 		animated_sprite.play("jump_ascending")
 		is_jumping = true
-		
+	
+	# Handle wall slide
+	elif is_on_wall_only():
+		if animated_sprite.animation != "wall_slide" and not animated_sprite.is_playing():
+			animated_sprite.play("wall_slide")
+	
 	# Handle jump descend
 	elif velocity.y > 0:
 		animated_sprite.play("jump_descending")

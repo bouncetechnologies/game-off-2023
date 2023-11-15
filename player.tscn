@@ -1,11 +1,13 @@
-[gd_scene load_steps=50 format=3 uid="uid://vmf8vril5fux"]
+[gd_scene load_steps=61 format=3 uid="uid://vmf8vril5fux"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_mmrc5"]
 [ext_resource type="Texture2D" uid="uid://dtg21fsy6mglx" path="res://assets/Character Idle 48x48.png" id="2_3y6ko"]
 [ext_resource type="Texture2D" uid="uid://da0k5e78v4kqy" path="res://assets/player jump 48x48.png" id="3_mustq"]
 [ext_resource type="Texture2D" uid="uid://bfjjqpwh213yf" path="res://assets/run cycle 48x48.png" id="3_rbeft"]
 [ext_resource type="Texture2D" uid="uid://b0ipser33tkm5" path="res://assets/player land 48x48.png" id="4_5rr7n"]
+[ext_resource type="Texture2D" uid="uid://b7db7jsf21jet" path="res://assets/wall land 48x48.png" id="7_j36kg"]
 [ext_resource type="AudioStream" uid="uid://yuje5ffted5v" path="res://assets/SOLARLAMP.wav" id="7_jl542"]
+[ext_resource type="Texture2D" uid="uid://c6wxbg3q65ddf" path="res://assets/Wall Slide 48x48.png" id="8_4m35d"]
 [ext_resource type="Shader" path="res://player.gdshader" id="8_lwd6l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmncq"]
@@ -160,6 +162,42 @@ region = Rect2(288, 0, 48, 48)
 atlas = ExtResource("3_rbeft")
 region = Rect2(336, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p4oj"]
+atlas = ExtResource("7_j36kg")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axsp8"]
+atlas = ExtResource("7_j36kg")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8c213"]
+atlas = ExtResource("7_j36kg")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgx5y"]
+atlas = ExtResource("7_j36kg")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcds0"]
+atlas = ExtResource("7_j36kg")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_181lj"]
+atlas = ExtResource("7_j36kg")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvbxk"]
+atlas = ExtResource("8_4m35d")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ns1b"]
+atlas = ExtResource("8_4m35d")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qdpt"]
+atlas = ExtResource("8_4m35d")
+region = Rect2(96, 0, 48, 48)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_a6hdj"]
 animations = [{
 "frames": [{
@@ -276,6 +314,43 @@ animations = [{
 "loop": true,
 "name": &"running",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p4oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axsp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8c213")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgx5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcds0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_181lj")
+}],
+"loop": false,
+"name": &"wall_land",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvbxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ns1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qdpt")
+}],
+"loop": false,
+"name": &"wall_slide",
+"speed": 12.0
 }]
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_xloek"]
@@ -335,7 +410,8 @@ material = SubResource("ShaderMaterial_fd3oc")
 position = Vector2(-7.15256e-07, -4.76837e-07)
 scale = Vector2(1.00704, 0.992537)
 sprite_frames = SubResource("SpriteFrames_a6hdj")
-animation = &"idle"
+animation = &"wall_slide"
+autoplay = "idle"
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 target_position = Vector2(-12, 0)
