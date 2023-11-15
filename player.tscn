@@ -25,6 +25,15 @@ spread = 0.0
 gravity = Vector3(-60, 2.08165e-12, 2.08165e-12)
 color = Color(0, 0, 0.882353, 1)
 alpha_curve = SubResource("CurveTexture_c6jfb")
+turbulence_enabled = true
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 0.684
+turbulence_noise_speed = Vector3(2.08165e-12, 5.75, 2.08165e-12)
+turbulence_noise_speed_random = 4.0
+turbulence_influence_min = 1.0
+turbulence_influence_max = 1.0
+turbulence_initial_displacement_min = 1.1
+turbulence_initial_displacement_max = 1.1
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wirpp"]
 seed = 2
