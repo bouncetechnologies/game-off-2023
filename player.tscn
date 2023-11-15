@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://vmf8vril5fux"]
+[gd_scene load_steps=98 format=3 uid="uid://vmf8vril5fux"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_mmrc5"]
 [ext_resource type="Texture2D" uid="uid://dtg21fsy6mglx" path="res://assets/Character Idle 48x48.png" id="2_3y6ko"]
@@ -238,31 +238,35 @@ region = Rect2(288, 0, 48, 48)
 atlas = ExtResource("3_rbeft")
 region = Rect2(336, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vqg6f"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tge8"]
 atlas = ExtResource("9_pdl0y")
 region = Rect2(336, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ridr0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_py6rc"]
 atlas = ExtResource("9_pdl0y")
 region = Rect2(288, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k1qql"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqhxs"]
+atlas = ExtResource("9_pdl0y")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7ylt"]
 atlas = ExtResource("9_pdl0y")
 region = Rect2(192, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7r0av"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijcd3"]
 atlas = ExtResource("9_pdl0y")
 region = Rect2(144, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0papi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cmxl"]
 atlas = ExtResource("9_pdl0y")
 region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_73wkl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk0xs"]
 atlas = ExtResource("9_pdl0y")
 region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o8ufa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bq7j6"]
 atlas = ExtResource("9_pdl0y")
 region = Rect2(0, 0, 48, 48)
 
@@ -508,25 +512,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vqg6f")
+"texture": SubResource("AtlasTexture_5tge8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ridr0")
+"texture": SubResource("AtlasTexture_py6rc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k1qql")
+"texture": SubResource("AtlasTexture_aqhxs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7r0av")
+"texture": SubResource("AtlasTexture_k7ylt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0papi")
+"texture": SubResource("AtlasTexture_ijcd3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_73wkl")
+"texture": SubResource("AtlasTexture_2cmxl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o8ufa")
+"texture": SubResource("AtlasTexture_rk0xs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bq7j6")
 }],
 "loop": true,
 "name": &"running_flipped",
@@ -672,7 +679,7 @@ material = SubResource("ShaderMaterial_fd3oc")
 position = Vector2(-7.15256e-07, -4.76837e-07)
 scale = Vector2(1.00704, 0.992537)
 sprite_frames = SubResource("SpriteFrames_a6hdj")
-animation = &"wall_slide_flipped"
+animation = &"running_flipped"
 autoplay = "idle"
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
