@@ -350,6 +350,11 @@ animations = [{
 "name": &"idle",
 "speed": 12.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"idle_flipped",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wt44w")
@@ -650,7 +655,7 @@ material = ExtResource("2_kmbt3")
 position = Vector2(-7.15256e-07, -4.76837e-07)
 scale = Vector2(1.00704, 0.992537)
 sprite_frames = SubResource("SpriteFrames_a6hdj")
-animation = &"wall_slide_flipped"
+animation = &"idle_flipped"
 autoplay = "idle"
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
