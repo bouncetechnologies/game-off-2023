@@ -109,14 +109,14 @@ func _physics_process(delta):
 	if direction == -1:
 		animated_sprite.flip_h = true
 		$GPUParticles2D.process_material.set("emission_shape_offset", Vector3(1.5, 0, 0))
-        
+		
 		# Store the facing direction so we know which direction to apply
 		# velocty for wall jumps
 		facing_direction = direction
 	elif direction == 1:
 		animated_sprite.flip_h = false
 		$GPUParticles2D.process_material.set("emission_shape_offset", Vector3(-1.5, 0, 0))
-        
+		
 		facing_direction = direction
 
 	# Handle applying horizontal velocity
