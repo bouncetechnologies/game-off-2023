@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c6wxbg3q65ddf" path="res://assets/Wall Slide 48x48.png" id="8_4m35d"]
 [ext_resource type="Shader" path="res://player.gdshader" id="8_lwd6l"]
 [ext_resource type="Texture2D" uid="uid://cw3vyquc6gmog" path="res://assets/run cycle flipped 48x48.png" id="9_pdl0y"]
-[ext_resource type="Texture2D" uid="uid://b4kt1lw0m66mu" path="res://assets/wall land flipped 48x48.png" id="11_kdv3s"]
+[ext_resource type="Texture2D" uid="uid://baqfvgfu86kpi" path="res://assets/wall land flipped 48x48.png" id="11_kdv3s"]
 [ext_resource type="Texture2D" uid="uid://dmpkoyebcc8uy" path="res://assets/Wall Slide flipped 48x48.png" id="13_cqwcr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmncq"]
@@ -294,27 +294,27 @@ region = Rect2(192, 0, 48, 48)
 atlas = ExtResource("7_j36kg")
 region = Rect2(240, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h6ncc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjhoy"]
 atlas = ExtResource("11_kdv3s")
 region = Rect2(240, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fhnu3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8ube"]
 atlas = ExtResource("11_kdv3s")
 region = Rect2(192, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sfk7j"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q784s"]
 atlas = ExtResource("11_kdv3s")
 region = Rect2(144, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7f6wb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs0hd"]
 atlas = ExtResource("11_kdv3s")
 region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fsn87"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n14x8"]
 atlas = ExtResource("11_kdv3s")
 region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ml6l3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bokf6"]
 atlas = ExtResource("11_kdv3s")
 region = Rect2(0, 0, 48, 48)
 
@@ -564,22 +564,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h6ncc")
+"texture": SubResource("AtlasTexture_wjhoy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fhnu3")
+"texture": SubResource("AtlasTexture_n8ube")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sfk7j")
+"texture": SubResource("AtlasTexture_q784s")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7f6wb")
+"texture": SubResource("AtlasTexture_cs0hd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fsn87")
+"texture": SubResource("AtlasTexture_n14x8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ml6l3")
+"texture": SubResource("AtlasTexture_bokf6")
 }],
 "loop": false,
 "name": &"wall_land_flipped",
@@ -679,7 +679,7 @@ material = SubResource("ShaderMaterial_fd3oc")
 position = Vector2(-7.15256e-07, -4.76837e-07)
 scale = Vector2(1.00704, 0.992537)
 sprite_frames = SubResource("SpriteFrames_a6hdj")
-animation = &"running_flipped"
+animation = &"wall_land_flipped"
 autoplay = "idle"
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]

@@ -28,13 +28,11 @@ func _ready():
 	$Life.play()
 
 func _process(delta):
-	
-	var direction = Input.get_axis("move_left", "move_right")
 	var player_frame
 	
-	if direction == -1:
+	if animated_sprite.flip_h:
 		player_frame = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation + "_flipped",$AnimatedSprite2D.get_frame())
-	else:
+	elif not animated_sprite.flip_h:
 		player_frame = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation,$AnimatedSprite2D.get_frame())
 	
 	$GPUParticles2D.texture = player_frame
