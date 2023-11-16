@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bo1wfbbgrucgg"]
+[gd_scene load_steps=13 format=3 uid="uid://bo1wfbbgrucgg"]
 
 [ext_resource type="PackedScene" uid="uid://vmf8vril5fux" path="res://player.tscn" id="1_lc8ti"]
 [ext_resource type="Script" path="res://main.gd" id="1_pgrpc"]
 [ext_resource type="PackedScene" path="res://moving_wall.tscn" id="3_r4j8k"]
 [ext_resource type="Texture2D" uid="uid://cgbowqlqby881" path="res://assets/Dungeon Tile Set.png" id="4_orqse"]
-[ext_resource type="AudioStream" uid="uid://cvlqqe6mypks4" path="res://IVORYOMEGA.wav" id="5_boera"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_tcchc"]
 tile_data = PackedInt32Array(0, 131072, 1, 65536, 131072, 2, 131072, 131072, 3, 1, 196608, 5, 65537, 196608, 2, 131073, 196608, 7)
@@ -493,7 +492,6 @@ one_shot = true
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_boera")
 volume_db = -5.153
 autoplay = true
 

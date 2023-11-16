@@ -32,6 +32,9 @@ func _ready():
 	$Life.play()
 
 func _process(delta):
+	$GPUParticles2D.process_material.set("scale_min", scale.x)
+	$GPUParticles2D.process_material.set("scale_max", scale.x)
+	
 	var player_frame
 	
 	if animated_sprite.flip_h:
