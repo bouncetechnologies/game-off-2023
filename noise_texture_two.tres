@@ -1,0 +1,9 @@
+[gd_resource type="NoiseTexture2D" load_steps=2 format=3 uid="uid://dik1ytu61ib08"]
+
+[ext_resource type="FastNoiseLite" uid="uid://qwu4568qa3ag" path="res://player_noise_two.tres" id="1_fr5to"]
+
+[resource]
+width = 336
+height = 336
+as_normal_map = true
+noise = ExtResource("1_fr5to")
