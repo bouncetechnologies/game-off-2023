@@ -31,6 +31,15 @@ func _ready():
 	$AnimationPlayer.play_backwards("disolve")
 	$Life.play()
 
+func _process(delta):
+	var player_frame
+	
+	if animated_sprite.flip_h:
+		player_frame = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation + "_flipped",$AnimatedSprite2D.get_frame())
+	elif not animated_sprite.flip_h:
+		player_frame = $AnimatedSprite2D.get_sprite_frames().get_frame_texture($AnimatedSprite2D.animation,$AnimatedSprite2D.get_frame())
+	
+	$GPUParticles2D.texture = player_frame
 
 func _physics_process(delta):
 	# Handle respawn
@@ -38,7 +47,10 @@ func _physics_process(delta):
 		dead = false
 		get_tree().reload_current_scene()
 	elif dead:
+		$GPUParticles2D.emitting = false
 		return
+		
+	$GPUParticles2D.emitting = true
 	
 	# Handle death conditions
 	var collider_left = $RayCastLeft.get_collider()
@@ -96,11 +108,15 @@ func _physics_process(delta):
 	# Handle facing sprite
 	if direction == -1:
 		animated_sprite.flip_h = true
+		$GPUParticles2D.process_material.set("emission_shape_offset", Vector3(1.5, 0, 0))
+        
 		# Store the facing direction so we know which direction to apply
 		# velocty for wall jumps
 		facing_direction = direction
 	elif direction == 1:
 		animated_sprite.flip_h = false
+		$GPUParticles2D.process_material.set("emission_shape_offset", Vector3(-1.5, 0, 0))
+        
 		facing_direction = direction
 
 	# Handle applying horizontal velocity
@@ -184,6 +200,7 @@ func _physics_process(delta):
 	elif is_jumping and is_on_floor():
 		animated_sprite.play("jump_land")
 		is_jumping = false
+		
 
 	# Handle running
 	elif direction and not is_jumping:
@@ -193,5 +210,7 @@ func _physics_process(delta):
 	elif not is_jumping:
 		if not (animated_sprite.animation == "jump_land" and animated_sprite.is_playing()):
 			animated_sprite.play("idle")
+			$GPUParticles2D.emitting = false
+			
 
 	move_and_slide()

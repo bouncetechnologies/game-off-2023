@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://vmf8vril5fux" path="res://player.tscn" id="1_lc8ti"]
 [ext_resource type="Script" path="res://main.gd" id="1_pgrpc"]
-[ext_resource type="PackedScene" uid="uid://bxc0xnba5l6dx" path="res://moving_wall.tscn" id="3_r4j8k"]
+[ext_resource type="PackedScene" path="res://moving_wall.tscn" id="3_r4j8k"]
 [ext_resource type="Texture2D" uid="uid://cgbowqlqby881" path="res://assets/Dungeon Tile Set.png" id="4_orqse"]
 [ext_resource type="AudioStream" uid="uid://cvlqqe6mypks4" path="res://IVORYOMEGA.wav" id="5_boera"]
 
@@ -488,7 +488,7 @@ editor_draw_drag_margin = true
 position = Vector2(-8, 520)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 4096.0
 one_shot = true
 autostart = true
 
