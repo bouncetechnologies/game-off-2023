@@ -13,7 +13,7 @@
 [ext_resource type="Shader" path="res://player.gdshader" id="8_lwd6l"]
 [ext_resource type="Texture2D" uid="uid://cw3vyquc6gmog" path="res://assets/run cycle flipped 48x48.png" id="9_pdl0y"]
 [ext_resource type="Texture2D" uid="uid://baqfvgfu86kpi" path="res://assets/wall land flipped 48x48.png" id="11_kdv3s"]
-[ext_resource type="Texture2D" uid="uid://dmpkoyebcc8uy" path="res://assets/Wall Slide flipped 48x48.png" id="13_cqwcr"]
+[ext_resource type="Texture2D" uid="uid://dupxse3yt38qu" path="res://assets/Wall Slide flipped 48x48.png" id="13_cqwcr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmncq"]
 
@@ -330,15 +330,15 @@ region = Rect2(48, 0, 48, 48)
 atlas = ExtResource("8_4m35d")
 region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qqq78"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_x16i1"]
 atlas = ExtResource("13_cqwcr")
 region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0yahd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6s0yk"]
 atlas = ExtResource("13_cqwcr")
 region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xluag"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_us7s3"]
 atlas = ExtResource("13_cqwcr")
 region = Rect2(0, 0, 48, 48)
 
@@ -601,13 +601,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qqq78")
+"texture": SubResource("AtlasTexture_x16i1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0yahd")
+"texture": SubResource("AtlasTexture_6s0yk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xluag")
+"texture": SubResource("AtlasTexture_us7s3")
 }],
 "loop": false,
 "name": &"wall_slide_flipped",
@@ -679,7 +679,7 @@ material = SubResource("ShaderMaterial_fd3oc")
 position = Vector2(-7.15256e-07, -4.76837e-07)
 scale = Vector2(1.00704, 0.992537)
 sprite_frames = SubResource("SpriteFrames_a6hdj")
-animation = &"wall_land_flipped"
+animation = &"wall_slide_flipped"
 autoplay = "idle"
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
