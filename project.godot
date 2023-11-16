@@ -20,6 +20,12 @@ config/icon="res://icon.svg"
 window/size/mode=3
 window/stretch/mode="canvas_items"
 
+[editor]
+
+movie_writer/mjpeg_quality=0.1
+movie_writer/movie_file="/Users/blankie/Documents/Repositories/Adjust/movie1.avi"
+movie_writer/fps=25
+
 [input]
 
 ui_up={
