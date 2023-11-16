@@ -45,6 +45,7 @@ func _process(delta):
 	$GPUParticles2D.texture = player_frame
 
 func _physics_process(delta):
+	
 	# Handle respawn
 	if dead and not $Death.is_playing():
 		dead = false
@@ -52,8 +53,9 @@ func _physics_process(delta):
 	elif dead:
 		$GPUParticles2D.emitting = false
 		return
-		
-	$GPUParticles2D.emitting = true
+	
+	if not $Life.is_playing():
+		$GPUParticles2D.emitting = true
 	
 	# Handle death conditions
 	var collider_left = $RayCastLeft.get_collider()
