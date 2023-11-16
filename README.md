@@ -5,9 +5,11 @@
 - [Godot 4.2](https://github.com/godotengine/godot-builds/releases/download/4.2-beta6/Godotxq_v4.2-beta6_macos.universal.zip)
   - With the preview version linked, you must disable `Display Grid` within the editor settings under `Tiles Editor` or your performance will bw nuked because of an [ongoing bug](https://github.com/godotengine/godot/issues/72405#issuecomment-1807527021) with how the grid is displayed.
 
-# GitHub Action Deployment
+# Building
 
-## Setup
+## GitHub Action tag building
+
+### Setup
 
 For automatic deployments of releases:
 
@@ -20,7 +22,7 @@ For automatic deployments of releases:
 5. On Itch, set type of project to `HTML` and enable `Fullscreen Button` and `SharedArrayBuffer support`
 6. See it deploy!
 
-## Known issues
+### Known issues
 
 While exporting this way is much more convenient, unfortunately to get the export to look the exact way on mac we will have to export final builds locally.
 
@@ -28,9 +30,9 @@ Currently affected graphical bugs:
 
 - Respawn and death dissolve animations do not dissolve the same way locally vs github action build
 
-# Building
+## Locally building
 
-## Web
+### Web
 
 For web, set your `export_presets.cfg` to:
 
