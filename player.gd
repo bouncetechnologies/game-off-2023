@@ -104,10 +104,10 @@ func _physics_process(delta):
 	# Handle facing sprite
 	if direction == -1:
 		animated_sprite.flip_h = true
-		#$GPUParticles2D.flip_h = true
+		$GPUParticles2D.process_material.set("emission_shape_offset", Vector3(1.5, 0, 0))
 	elif direction == 1:
 		animated_sprite.flip_h = false
-		#$GPUParticles2D.flip_h = false
+		$GPUParticles2D.process_material.set("emission_shape_offset", Vector3(-1.5, 0, 0))
 		
 
 	# Handle applying forward velocity

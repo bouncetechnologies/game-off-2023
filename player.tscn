@@ -26,6 +26,7 @@ curve = SubResource("Curve_k5kki")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gmskj"]
 particle_flag_disable_z = true
+emission_shape_offset = Vector3(-2, 2.08165e-12, 2.08165e-12)
 spread = 0.0
 gravity = Vector3(-60, 2.08165e-12, 2.08165e-12)
 color = Color(0, 0, 0.882353, 1)
