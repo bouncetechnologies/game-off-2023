@@ -1,4 +1,11 @@
-# godot-template-project
+# Adjust
+
+## Requirements
+
+- [Godot 4.2](https://github.com/godotengine/godot-builds/releases/download/4.2-beta6/Godot_v4.2-beta6_macos.universal.zip)
+  - With the preview version linked, you must disable `Display Grid` within the editor settings under `Tiles Editor` or your performance will bw nuked because of an [ongoing bug](https://github.com/godotengine/godot/issues/72405#issuecomment-1807527021) with how the grid is displayed.
+
+# Deployment
 
 For automatic deployments of releases:
 
