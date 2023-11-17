@@ -169,7 +169,7 @@ func _physics_process(delta):
 		last_wall_touched = -1
 		
 		if direction == last_wall_touched:
-			if animated_sprite.animation != "wall_slide" and not animated_sprite.is_playing():
+			if animated_sprite.animation != "wall_slide":
 				animated_sprite.play("wall_slide")
 			
 			# Handle wall jump
@@ -186,7 +186,7 @@ func _physics_process(delta):
 		last_wall_touched = 1
 		
 		if direction == last_wall_touched:
-			if animated_sprite.animation != "wall_slide" and not animated_sprite.is_playing():
+			if animated_sprite.animation != "wall_slide":
 				animated_sprite.play("wall_slide")
 			
 			# Handle wall jump
