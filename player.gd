@@ -247,10 +247,12 @@ func _physics_process(delta):
 	elif is_on_floor() and direction and Input.is_action_pressed("crouch") and not Input.is_action_just_released("crouch"):
 		if not (animated_sprite.animation == "quick_roll" and animated_sprite.is_playing()):
 			velocity.x = direction * 0.2 * SPEED * sqrt(scale.x)
+			$Run.pitch_scale = 0.32
 			animated_sprite.play("crouch_walk")
 
 	# Handle running
 	elif is_on_floor() and direction and not is_jumping:
+		$Run.pitch_scale = 0.49
 		if not (animated_sprite.animation == "quick_roll" and animated_sprite.is_playing()):
 			animated_sprite.play("running")
 	
