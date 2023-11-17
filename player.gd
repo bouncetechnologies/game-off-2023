@@ -76,7 +76,7 @@ func _physics_process(delta):
 		died.emit()
 	
 	# Handle scaling
-	if Input.is_action_pressed("scale_up") and scale.x < MAX_SCALE and not $RayCastUp.is_colliding():
+	if Input.is_action_pressed("scale_up") and scale.x < MAX_SCALE and not $RayCastUp.is_colliding() and not ($RayCastLeft.is_colliding() and $RayCastRight.is_colliding()):
 		scale.x = clamp(scale.x + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
 		scale.y = clamp(scale.y + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
 		camera.zoom.x = initial_zoom.x * 1.0/scale.x
