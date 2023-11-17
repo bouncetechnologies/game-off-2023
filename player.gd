@@ -216,10 +216,16 @@ func _physics_process(delta):
 	elif is_jumping and is_on_floor():
 		animated_sprite.play("jump_land")
 		is_jumping = false
+		
+	# Handle quick roll
+	elif direction and Input.is_action_just_pressed("crouch"):
+		velocity.x += direction * 300.0
+		animated_sprite.play("quick_roll")
 
 	# Handle running
 	elif direction and not is_jumping:
-		animated_sprite.play("running")
+		if not (animated_sprite.animation == "quick_roll" and animated_sprite.is_playing()):
+			animated_sprite.play("running")
 	
 	# Handle idle
 	elif not is_jumping:

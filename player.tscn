@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://vmf8vril5fux"]
+[gd_scene load_steps=101 format=3 uid="uid://vmf8vril5fux"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_mmrc5"]
 [ext_resource type="Texture2D" uid="uid://dtg21fsy6mglx" path="res://assets/Character Idle 48x48.png" id="2_3y6ko"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://yuje5ffted5v" path="res://assets/SOLARLAMP.wav" id="7_jl542"]
 [ext_resource type="Texture2D" uid="uid://c88dpq3je1s7t" path="res://assets/player land flipped 48x48.png" id="7_tt6ce"]
 [ext_resource type="Texture2D" uid="uid://c6wxbg3q65ddf" path="res://assets/Wall Slide 48x48.png" id="8_4m35d"]
+[ext_resource type="Texture2D" uid="uid://dqpb51chw5bns" path="res://assets/Player Roll 48x48.png" id="8_rg0ks"]
 [ext_resource type="Texture2D" uid="uid://cw3vyquc6gmog" path="res://assets/run cycle flipped 48x48.png" id="9_pdl0y"]
 [ext_resource type="Texture2D" uid="uid://baqfvgfu86kpi" path="res://assets/wall land flipped 48x48.png" id="11_kdv3s"]
 [ext_resource type="Texture2D" uid="uid://dupxse3yt38qu" path="res://assets/Wall Slide flipped 48x48.png" id="13_cqwcr"]
@@ -176,6 +177,34 @@ region = Rect2(0, 0, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ar7w0"]
 atlas = ExtResource("3_mustq")
 region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfi0h"]
+atlas = ExtResource("8_rg0ks")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8flx0"]
+atlas = ExtResource("8_rg0ks")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kun4v"]
+atlas = ExtResource("8_rg0ks")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyhg2"]
+atlas = ExtResource("8_rg0ks")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d0t6"]
+atlas = ExtResource("8_rg0ks")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c31nf"]
+atlas = ExtResource("8_rg0ks")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2isv"]
+atlas = ExtResource("8_rg0ks")
+region = Rect2(288, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1aqr1"]
 atlas = ExtResource("3_rbeft")
@@ -464,6 +493,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_wfi0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8flx0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kun4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyhg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d0t6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c31nf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2isv")
+}],
+"loop": false,
+"name": &"quick_roll",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1aqr1")
 }, {
 "duration": 1.0,
@@ -660,7 +715,7 @@ material = ExtResource("2_kmbt3")
 position = Vector2(-7.15256e-07, -4.76837e-07)
 scale = Vector2(1.00704, 0.992537)
 sprite_frames = SubResource("SpriteFrames_a6hdj")
-animation = &"jump_max"
+animation = &"quick_roll"
 autoplay = "idle"
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
