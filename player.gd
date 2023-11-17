@@ -213,7 +213,6 @@ func _physics_process(delta):
 		
 	# Handle quick roll
 	elif is_on_floor() and direction and Input.is_action_just_pressed("crouch"):
-		velocity.x += direction * 300.0 * sqrt(scale.x)
 		animated_sprite.play("quick_roll")
 	
 	# Handle crouching
