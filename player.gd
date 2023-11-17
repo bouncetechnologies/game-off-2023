@@ -111,6 +111,11 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
 	
+	if direction and not $Run.is_playing() and not is_jumping:
+		$Run.play()
+	elif not direction or is_jumping:
+		$Run.stop()
+	
 	# Handle facing sprite
 	if direction == -1:
 		animated_sprite.flip_h = true
@@ -172,6 +177,8 @@ func _physics_process(delta):
 		
 	# Handle wall slide and jump on left wall
 	elif not is_on_floor() and $RayCastWallJumpLeft.is_colliding():
+		if not $Slide.is_playing():
+			$Slide.play()
 		last_wall_touched = -1
 		
 		#animated_sprite.flip_h = true
@@ -189,6 +196,8 @@ func _physics_process(delta):
 		
 	# Handle wall slide and jump on right wall
 	elif not is_on_floor() and $RayCastWallJumpRight.is_colliding():
+		if not $Slide.is_playing():
+			$Slide.play()
 		last_wall_touched = 1
 		
 		#animated_sprite.flip_h = false
@@ -214,11 +223,13 @@ func _physics_process(delta):
 		
 	# Handle jump land
 	elif is_jumping and is_on_floor():
+		$Land.play()
 		animated_sprite.play("jump_land")
 		is_jumping = false
 
 	# Handle running
 	elif direction and not is_jumping:
+		$Slide.stop()
 		animated_sprite.play("running")
 	
 	# Handle idle
