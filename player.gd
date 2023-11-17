@@ -176,9 +176,8 @@ func _physics_process(delta):
 			$Slide.play()
 		last_wall_touched = -1
 		
-		if direction == last_wall_touched:
-			if animated_sprite.animation != "wall_slide":
-				animated_sprite.play("wall_slide")
+		if animated_sprite.animation != "wall_slide":
+			animated_sprite.play("wall_slide")
 			
 		# Handle wall jump
 		if Input.is_action_just_pressed("jump"):
@@ -195,9 +194,8 @@ func _physics_process(delta):
 			$Slide.play()
 		last_wall_touched = 1
 		
-		if direction == last_wall_touched:
-			if animated_sprite.animation != "wall_slide":
-				animated_sprite.play("wall_slide")
+		if animated_sprite.animation != "wall_slide":
+			animated_sprite.play("wall_slide")
 			
 		# Handle wall jump
 		if Input.is_action_just_pressed("jump"):
