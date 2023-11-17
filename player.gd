@@ -204,6 +204,10 @@ func _physics_process(delta):
 			is_jumping = true
 			$JustWallJumpedTimer.start()
 	
+	# Handle jump max
+	elif not is_on_floor() and ( velocity.y >= -100 && velocity.y < 100 ):
+		animated_sprite.play("jump_max")
+	
 	# Handle jump descend
 	elif velocity.y > 0:
 		animated_sprite.play("jump_descending")

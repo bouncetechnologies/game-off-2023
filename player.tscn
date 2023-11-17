@@ -85,10 +85,6 @@ region = Rect2(432, 0, 48, 48)
 atlas = ExtResource("3_mustq")
 region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_efncj"]
-atlas = ExtResource("3_mustq")
-region = Rect2(48, 0, 48, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_0pnci"]
 atlas = ExtResource("5_ivwnn")
 region = Rect2(96, 0, 48, 48)
@@ -176,6 +172,10 @@ region = Rect2(48, 0, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_51fyx"]
 atlas = ExtResource("7_tt6ce")
 region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar7w0"]
+atlas = ExtResource("3_mustq")
+region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1aqr1"]
 atlas = ExtResource("3_rbeft")
@@ -358,9 +358,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wt44w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_efncj")
 }],
 "loop": false,
 "name": &"jump_ascending",
@@ -456,6 +453,14 @@ animations = [{
 "loop": false,
 "name": &"jump_land_flipped",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar7w0")
+}],
+"loop": true,
+"name": &"jump_max",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -655,7 +660,7 @@ material = ExtResource("2_kmbt3")
 position = Vector2(-7.15256e-07, -4.76837e-07)
 scale = Vector2(1.00704, 0.992537)
 sprite_frames = SubResource("SpriteFrames_a6hdj")
-animation = &"idle"
+animation = &"jump_max"
 autoplay = "idle"
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
