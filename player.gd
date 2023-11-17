@@ -221,8 +221,12 @@ func _physics_process(delta):
 	elif velocity.y > 0:
 		animated_sprite.play("jump_descending")
 		
+	elif not is_on_floor() and not ($RayCastWallJumpLeft.is_colliding() or $RayCastWallJumpLeft.is_colliding()):
+		$Slide.stop()
+	
 	# Handle jump land
 	elif is_jumping and is_on_floor():
+		$Slide.stop()
 		$Land.play()
 		animated_sprite.play("jump_land")
 		is_jumping = false
@@ -244,7 +248,6 @@ func _physics_process(delta):
 
 	# Handle running
 	elif is_on_floor() and direction and not is_jumping:
-		$Slide.stop()
 		if not (animated_sprite.animation == "quick_roll" and animated_sprite.is_playing()):
 			animated_sprite.play("running")
 	
