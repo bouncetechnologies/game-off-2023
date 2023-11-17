@@ -168,6 +168,7 @@ func _physics_process(delta):
 		#is_jumping = true
 		
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		$Jump.play()
 		velocity.y = JUMP_VELOCITY * scale.y
 		animated_sprite.play("jump_ascending")
 		is_jumping = true
@@ -187,6 +188,7 @@ func _physics_process(delta):
 		
 		# Handle wall jump
 		if Input.is_action_just_pressed("jump"):
+			$Jump.play()	
 			velocity.y = JUMP_VELOCITY_WALL_SLIDE * sqrt(scale.y)
 			velocity.x = -JUMP_VELOCITY_WALL_SLIDE_X * sqrt(scale.x)
 			animated_sprite.flip_h = false
@@ -206,6 +208,7 @@ func _physics_process(delta):
 		
 		# Handle wall jump
 		if Input.is_action_just_pressed("jump"):
+			$Jump.play()
 			velocity.y = JUMP_VELOCITY_WALL_SLIDE * sqrt(scale.y)
 			velocity.x = JUMP_VELOCITY_WALL_SLIDE_X * sqrt(scale.x)
 			animated_sprite.flip_h = true

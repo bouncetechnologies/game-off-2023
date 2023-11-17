@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=3 uid="uid://vmf8vril5fux"]
+[gd_scene load_steps=127 format=3 uid="uid://vmf8vril5fux"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_mmrc5"]
 [ext_resource type="Texture2D" uid="uid://dtg21fsy6mglx" path="res://assets/Character Idle 48x48.png" id="2_3y6ko"]
@@ -17,9 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://cw3vyquc6gmog" path="res://assets/run cycle flipped 48x48.png" id="9_pdl0y"]
 [ext_resource type="Texture2D" uid="uid://baqfvgfu86kpi" path="res://assets/wall land flipped 48x48.png" id="11_kdv3s"]
 [ext_resource type="Texture2D" uid="uid://dupxse3yt38qu" path="res://assets/Wall Slide flipped 48x48.png" id="13_cqwcr"]
-[ext_resource type="AudioStream" uid="uid://irhat7bknia5" path="res://NEONPLANT.wav" id="15_licgq"]
 [ext_resource type="AudioStream" uid="uid://bkn2ujloax1dr" path="res://MERRYTYPO.wav" id="17_37xk6"]
+[ext_resource type="AudioStream" uid="uid://d0yxl71lspt8" path="res://ANXIOUSDJ.wav" id="18_oh2d3"]
 [ext_resource type="AudioStream" uid="uid://tycww2tgh5g4" path="res://GUILTYNEBULA-constant.wav" id="19_s7waq"]
+[ext_resource type="AudioStream" uid="uid://c17cispb0lpfn" path="res://ANXIOUSDJ-j.wav" id="20_dnpa6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmncq"]
 
@@ -913,15 +914,14 @@ target_position = Vector2(-24, 0)
 target_position = Vector2(24, 0)
 
 [node name="Land" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("15_licgq")
-volume_db = -8.901
-pitch_scale = 0.66
+stream = ExtResource("18_oh2d3")
 
 [node name="Slide" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_s7waq")
 volume_db = -23.892
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_dnpa6")
 
 [node name="Run" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_37xk6")
