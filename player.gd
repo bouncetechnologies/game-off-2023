@@ -107,6 +107,11 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
 	
+	if direction and not $Run.is_playing() and not is_jumping:
+		$Run.play()
+	elif not direction or is_jumping:
+		$Run.stop()
+	
 	# Apply wall slide gravity modifier
 	if is_on_wall_only() and velocity.y >= 0 and direction == last_wall_touched:
 		velocity.y = SPEED_WALL_SLIDE_DESCEND * sqrt(scale.y)
@@ -157,6 +162,7 @@ func _physics_process(delta):
 
 	# Handle jump ascend
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		$Jump.play()
 		velocity.y = JUMP_VELOCITY * scale.y
 		animated_sprite.play("jump_ascending")
 		is_jumping = true
@@ -166,6 +172,8 @@ func _physics_process(delta):
 		
 	# Handle wall slide and jump on left wall
 	elif not is_on_floor() and $RayCastWallJumpLeft.is_colliding():
+		if not $Slide.is_playing():
+			$Slide.play()
 		last_wall_touched = -1
 		
 		if direction == last_wall_touched:
@@ -183,6 +191,8 @@ func _physics_process(delta):
 		
 	# Handle wall slide and jump on right wall
 	elif not is_on_floor() and $RayCastWallJumpRight.is_colliding():
+		if not $Slide.is_playing():
+			$Slide.play()
 		last_wall_touched = 1
 		
 		if direction == last_wall_touched:
@@ -206,13 +216,20 @@ func _physics_process(delta):
 	elif velocity.y > 0:
 		animated_sprite.play("jump_descending")
 		
+	elif not is_on_floor() and not ($RayCastWallJumpLeft.is_colliding() or $RayCastWallJumpLeft.is_colliding()):
+		$Slide.stop()
+	
 	# Handle jump land
 	elif is_jumping and is_on_floor():
+		$Slide.stop()
+		$Land.play()
 		animated_sprite.play("jump_land")
 		is_jumping = false
 		
 	# Handle quick roll
 	elif is_on_floor() and direction and Input.is_action_just_pressed("crouch"):
+		$Roll.play()
+		velocity.x += direction * 300.0 * sqrt(scale.x)
 		animated_sprite.play("quick_roll")
 	
 	# Handle crouching
@@ -223,10 +240,12 @@ func _physics_process(delta):
 	elif is_on_floor() and direction and Input.is_action_pressed("crouch") and not Input.is_action_just_released("crouch"):
 		if not (animated_sprite.animation == "quick_roll" and animated_sprite.is_playing()):
 			velocity.x = direction * 0.2 * SPEED * sqrt(scale.x)
+			$Run.pitch_scale = 0.32
 			animated_sprite.play("crouch_walk")
 
 	# Handle running
 	elif is_on_floor() and direction and not is_jumping:
+		$Run.pitch_scale = 0.49
 		if not (animated_sprite.animation == "quick_roll" and animated_sprite.is_playing()):
 			animated_sprite.play("running")
 	
