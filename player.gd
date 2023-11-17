@@ -126,28 +126,29 @@ func _physics_process(delta):
 
 	# Handle applying horizontal velocity
 	if direction:
-		# Speed up
+		# We have an input direction, speed the player character up
 		var new_velocity_x = direction * SPEED * sqrt(scale.x)
 		if not is_on_wall_only() and $JustWallJumpedTimer.time_left == 0:
-			# 
+			# Not on wall, and not recently wall jumped, so speed up normally.
 			velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL)
 		elif is_on_wall_only() and direction != last_wall_touched:
+			# We're on a wall, and we're moving away from it.
 			animated_sprite.play("jump_descending")
 			velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL)
-		elif direction == last_wall_touched: # Timer running - we recently jumped off a wall
-			# Player is trying to get back to the wall, so we slowly give
-			# them back control of the direction so they can't infinitely
-			# keep jumping up the wall.
+		elif not is_on_wall_only() and $JustWallJumpedTimer.time_left != 0 and direction == last_wall_touched:
+			# We've recently jumped off a wall, and we're trying to get back to the wall.
+			# Therefore we slowly give them back control of the direction so they can't
+			# get back to the wall at a higher point than where they jumped off.
 			var factor = pow((1 - $JustWallJumpedTimer.time_left), 2.0)
 			new_velocity_x = direction * -JUMP_VELOCITY_WALL_SLIDE_X * factor * sqrt(scale.x)
 			velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL)
-		else:
-			# Player is moving away from the wall, so we conserve the
-			# velocity from the wall jump without altering it.
+		elif not is_on_wall_only() and $JustWallJumpedTimer.time_left != 0 and direction != last_wall_touched:
+			# We've recently jumped off a wall, and we're trying to move away from the wall.
+			# We therefore conserve the velocity from the wall jump without altering it.
 			pass
 
 	else:
-		# Slow down
+		# No input direction, slow the player character down
 		if is_on_floor():
 			velocity.x = move_toward(velocity.x, 0, SPEED_DOWN_INTERVAL)
 		else:
