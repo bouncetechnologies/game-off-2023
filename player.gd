@@ -104,7 +104,7 @@ func _physics_process(delta):
 	
 	# Apply wall slide gravity modifier
 	if is_on_wall_only() and velocity.y >= 0:
-		velocity.y = SPEED_WALL_SLIDE_DESCEND *sqrt(scale.y)
+		velocity.y = SPEED_WALL_SLIDE_DESCEND * sqrt(scale.y)
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -129,19 +129,22 @@ func _physics_process(delta):
 		# Speed up
 		var new_velocity_x = direction * SPEED * sqrt(scale.x)
 		if not is_on_wall_only() and $JustWallJumpedTimer.time_left == 0:
+			# 
 			velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL)
-		else: # Timer running - we recently jumped off a wall
-			if direction == last_wall_touched:
-				# Player is trying to get back to the wall, so we slowly give
-				# them back control of the direction so they can't infinitely
-				# keep jumping up the wall.
-				var factor = pow((1 - $JustWallJumpedTimer.time_left), 2.0)
-				new_velocity_x = direction * -JUMP_VELOCITY_WALL_SLIDE_X * factor * sqrt(scale.x)
-				velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL)
-			else:
-				# Player is moving away from the wall, so we conserve the
-				# velocity from the wall jump without altering it.
-				pass
+		elif is_on_wall_only() and direction != last_wall_touched:
+			animated_sprite.play("jump_descending")
+			velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL)
+		elif direction == last_wall_touched: # Timer running - we recently jumped off a wall
+			# Player is trying to get back to the wall, so we slowly give
+			# them back control of the direction so they can't infinitely
+			# keep jumping up the wall.
+			var factor = pow((1 - $JustWallJumpedTimer.time_left), 2.0)
+			new_velocity_x = direction * -JUMP_VELOCITY_WALL_SLIDE_X * factor * sqrt(scale.x)
+			velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL)
+		else:
+			# Player is moving away from the wall, so we conserve the
+			# velocity from the wall jump without altering it.
+			pass
 
 	else:
 		# Slow down
