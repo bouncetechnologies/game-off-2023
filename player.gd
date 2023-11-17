@@ -23,6 +23,7 @@ signal died
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_jumping = false
+var is_crouching = false
 var dead = false
 var facing_direction = 1
 var last_wall_touched = 1
@@ -164,6 +165,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		$Jump.play()
 		velocity.y = JUMP_VELOCITY * scale.y
+		$StandingCollisionShape2D.disabled = false
+		$CrouchingCollisionShape2D2.disabled = true
 		animated_sprite.play("jump_ascending")
 		is_jumping = true
 	elif Input.is_action_just_released("jump"):
@@ -177,6 +180,8 @@ func _physics_process(delta):
 		last_wall_touched = -1
 		
 		if animated_sprite.animation != "wall_slide":
+			$StandingCollisionShape2D.disabled = false
+			$CrouchingCollisionShape2D2.disabled = true
 			animated_sprite.play("wall_slide")
 			
 		# Handle wall jump
@@ -195,6 +200,8 @@ func _physics_process(delta):
 		last_wall_touched = 1
 		
 		if animated_sprite.animation != "wall_slide":
+			$StandingCollisionShape2D.disabled = false
+			$CrouchingCollisionShape2D2.disabled = true
 			animated_sprite.play("wall_slide")
 			
 		# Handle wall jump
@@ -227,29 +234,41 @@ func _physics_process(delta):
 	# Handle quick roll
 	elif is_on_floor() and direction and Input.is_action_just_pressed("crouch"):
 		$Roll.play()
-		velocity.x += direction * 300.0 * sqrt(scale.x)
+		$StandingCollisionShape2D.disabled = true
+		$CrouchingCollisionShape2D2.disabled = false
 		animated_sprite.play("quick_roll")
+		is_crouching = true
 	
 	# Handle crouching
 	elif is_on_floor() and not direction and Input.is_action_pressed("crouch"):
+		$StandingCollisionShape2D.disabled = true
+		$CrouchingCollisionShape2D2.disabled = false
 		animated_sprite.play("crouch")
+		is_crouching = true
 	
 	# Handle crouch walking
-	elif is_on_floor() and direction and Input.is_action_pressed("crouch") and not Input.is_action_just_released("crouch"):
+	elif is_on_floor() and direction and Input.is_action_pressed("crouch") and not Input.is_action_just_released("crouch") or (is_on_floor() and $RayCastUp.is_colliding()):
 		if not (animated_sprite.animation == "quick_roll" and animated_sprite.is_playing()):
 			velocity.x = direction * 0.2 * SPEED * sqrt(scale.x)
 			$Run.pitch_scale = 0.32
+			$StandingCollisionShape2D.disabled = true
+			$CrouchingCollisionShape2D2.disabled = false
 			animated_sprite.play("crouch_walk")
+			is_crouching = true
 
 	# Handle running
-	elif is_on_floor() and direction and not is_jumping:
+	elif is_on_floor() and direction and not is_jumping and not (is_crouching and $RayCastUp.is_colliding()):
 		$Run.pitch_scale = 0.49
 		if not (animated_sprite.animation == "quick_roll" and animated_sprite.is_playing()):
+			$StandingCollisionShape2D.disabled = false
+			$CrouchingCollisionShape2D2.disabled = true
 			animated_sprite.play("running")
 	
 	# Handle idle
-	elif is_on_floor() and not is_jumping:
+	elif is_on_floor() and not is_jumping and not (is_crouching and $RayCastUp.is_colliding()):
 		if not (animated_sprite.animation == "jump_land" and animated_sprite.is_playing()):
+			$StandingCollisionShape2D.disabled = false
+			$CrouchingCollisionShape2D2.disabled = true
 			animated_sprite.play("idle")
 			$GPUParticles2D.emitting = false
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=3 uid="uid://vmf8vril5fux"]
+[gd_scene load_steps=129 format=3 uid="uid://vmf8vril5fux"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_mmrc5"]
 [ext_resource type="Texture2D" uid="uid://dtg21fsy6mglx" path="res://assets/Character Idle 48x48.png" id="2_3y6ko"]
@@ -23,7 +23,12 @@
 [ext_resource type="AudioStream" uid="uid://c17cispb0lpfn" path="res://ANXIOUSDJ-j.wav" id="20_dnpa6"]
 [ext_resource type="AudioStream" uid="uid://dfsq6bvceei45" path="res://roll.wav" id="21_j2r2x"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmncq"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3m1ei"]
+height = 30.25
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sthmf"]
+radius = 7.0
+height = 14.0
 
 [sub_resource type="Curve" id="Curve_k5kki"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.142384, 0), 0.0, 0.0, 0, 0]
@@ -855,9 +860,14 @@ stereo = true
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mmrc5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="StandingCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.875)
-shape = SubResource("CapsuleShape2D_kmncq")
+shape = SubResource("CapsuleShape2D_3m1ei")
+
+[node name="CrouchingCollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(2.08165e-12, 9)
+shape = SubResource("CapsuleShape2D_sthmf")
+disabled = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
