@@ -180,14 +180,14 @@ func _physics_process(delta):
 			if animated_sprite.animation != "wall_slide":
 				animated_sprite.play("wall_slide")
 			
-			# Handle wall jump
-			if Input.is_action_just_pressed("jump"):
-				velocity.y = JUMP_VELOCITY_WALL_SLIDE * sqrt(scale.y)
-				velocity.x = -JUMP_VELOCITY_WALL_SLIDE_X * sqrt(scale.x)
-				animated_sprite.flip_h = false
-				animated_sprite.play("jump_ascending")
-				is_jumping = true
-				$JustWallJumpedTimer.start()
+		# Handle wall jump
+		if Input.is_action_just_pressed("jump"):
+			velocity.y = JUMP_VELOCITY_WALL_SLIDE * sqrt(scale.y)
+			velocity.x = -JUMP_VELOCITY_WALL_SLIDE_X * sqrt(scale.x)
+			animated_sprite.flip_h = false
+			animated_sprite.play("jump_ascending")
+			is_jumping = true
+			$JustWallJumpedTimer.start()
 		
 	# Handle wall slide and jump on right wall
 	elif not is_on_floor() and $RayCastWallJumpRight.is_colliding():
@@ -199,14 +199,14 @@ func _physics_process(delta):
 			if animated_sprite.animation != "wall_slide":
 				animated_sprite.play("wall_slide")
 			
-			# Handle wall jump
-			if Input.is_action_just_pressed("jump"):
-				velocity.y = JUMP_VELOCITY_WALL_SLIDE * sqrt(scale.y)
-				velocity.x = JUMP_VELOCITY_WALL_SLIDE_X * sqrt(scale.x)
-				animated_sprite.flip_h = true
-				animated_sprite.play("jump_ascending")
-				is_jumping = true
-				$JustWallJumpedTimer.start()
+		# Handle wall jump
+		if Input.is_action_just_pressed("jump"):
+			velocity.y = JUMP_VELOCITY_WALL_SLIDE * sqrt(scale.y)
+			velocity.x = JUMP_VELOCITY_WALL_SLIDE_X * sqrt(scale.x)
+			animated_sprite.flip_h = true
+			animated_sprite.play("jump_ascending")
+			is_jumping = true
+			$JustWallJumpedTimer.start()
 	
 	# Handle jump max
 	elif not is_on_floor() and ( velocity.y >= -100 && velocity.y < 100 ):
