@@ -11,6 +11,7 @@ position = Vector2(0, -256)
 script = ExtResource("1_pgrpc")
 
 [node name="TutorialLevel" parent="." instance=ExtResource("2_56prq")]
+position = Vector2(2.08165e-12, 768)
 
 [node name="Player" parent="." instance=ExtResource("1_lc8ti")]
 position = Vector2(64, 768)
