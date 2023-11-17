@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=3 uid="uid://vmf8vril5fux"]
+[gd_scene load_steps=128 format=3 uid="uid://vmf8vril5fux"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_mmrc5"]
 [ext_resource type="Texture2D" uid="uid://dtg21fsy6mglx" path="res://assets/Character Idle 48x48.png" id="2_3y6ko"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://d0yxl71lspt8" path="res://ANXIOUSDJ.wav" id="18_oh2d3"]
 [ext_resource type="AudioStream" uid="uid://tycww2tgh5g4" path="res://GUILTYNEBULA-constant.wav" id="19_s7waq"]
 [ext_resource type="AudioStream" uid="uid://c17cispb0lpfn" path="res://ANXIOUSDJ-j.wav" id="20_dnpa6"]
+[ext_resource type="AudioStream" uid="uid://dfsq6bvceei45" path="res://roll.wav" id="21_j2r2x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmncq"]
 
@@ -922,6 +923,11 @@ volume_db = -23.892
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_dnpa6")
+
+[node name="Roll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_j2r2x")
+volume_db = -11.712
+pitch_scale = 1.25
 
 [node name="Run" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_37xk6")
