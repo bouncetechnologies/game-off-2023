@@ -179,7 +179,7 @@ func _physics_process(delta):
 			$Slide.play()
 		last_wall_touched = -1
 		
-		if animated_sprite.animation != "wall_slide":
+		if is_on_wall_only() and animated_sprite.animation != "wall_slide":
 			$StandingCollisionShape2D.disabled = false
 			$CrouchingCollisionShape2D2.disabled = true
 			animated_sprite.play("wall_slide")
@@ -199,7 +199,7 @@ func _physics_process(delta):
 			$Slide.play()
 		last_wall_touched = 1
 		
-		if animated_sprite.animation != "wall_slide":
+		if is_on_wall_only() and animated_sprite.animation != "wall_slide":
 			$StandingCollisionShape2D.disabled = false
 			$CrouchingCollisionShape2D2.disabled = true
 			animated_sprite.play("wall_slide")
