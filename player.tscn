@@ -655,7 +655,7 @@ material = ExtResource("2_kmbt3")
 position = Vector2(-7.15256e-07, -4.76837e-07)
 scale = Vector2(1.00704, 0.992537)
 sprite_frames = SubResource("SpriteFrames_a6hdj")
-animation = &"idle_flipped"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]

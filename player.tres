@@ -1,8 +1,8 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://ct806rbglx2ms"]
 
 [ext_resource type="Shader" path="res://player.gdshader" id="1_h0bee"]
-[ext_resource type="Texture2D" uid="uid://dik1ytu61ib08" path="res://noise_texture_two.tres" id="2_ixxbh"]
-[ext_resource type="Texture2D" uid="uid://cnjoudqlxvbpo" path="res://noise_texture_one.tres" id="3_getlo"]
+[ext_resource type="Texture2D" path="res://noise_texture_two.tres" id="2_ixxbh"]
+[ext_resource type="Texture2D" path="res://noise_texture_one.tres" id="3_getlo"]
 
 [resource]
 shader = ExtResource("1_h0bee")
