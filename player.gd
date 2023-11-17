@@ -193,13 +193,6 @@ func _physics_process(delta):
 			animated_sprite.play("jump_ascending")
 			is_jumping = true
 			$JustWallJumpedTimer.start()
-			
-	#elif not is_on_floor() and not is_on_wall():
-		## Off the wall, so play airborne animations
-		#if velocity.y <= 0:
-			#animated_sprite.play("jump_descending")
-		#else:
-			#animated_sprite.play("jump_ascending")
 	
 	# Handle jump descend
 	elif velocity.y > 0:
