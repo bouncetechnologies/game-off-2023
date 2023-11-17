@@ -156,12 +156,6 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, SPEED_DOWN_INTERVAL_AIRBORNE)
 
 	# Handle jump ascend
-	#if Input.is_action_pressed("jump") and velocity.y > JUMP_VELOCITY:
-		#velocity.y += JUMP_VELOCITY_INCREMENT * sqrt(scale.y)
-		#if animated_sprite.animation != "jump_ascending":
-			#animated_sprite.play("jump_ascending")
-		#is_jumping = true
-		
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY * scale.y
 		animated_sprite.play("jump_ascending")
