@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://main.gd" id="1_pgrpc"]
 [ext_resource type="PackedScene" path="res://moving_wall.tscn" id="3_r4j8k"]
 [ext_resource type="Texture2D" uid="uid://cgbowqlqby881" path="res://assets/Dungeon Tile Set.png" id="4_orqse"]
-[ext_resource type="AudioStream" uid="uid://dfeo7yvfped6g" path="res://DARKSOUP-1.wav" id="5_q3pat"]
+[ext_resource type="AudioStream" uid="uid://bba2b2pf7jfo8" path="res://SILLYBOND_2.wav" id="5_b4flv"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_tcchc"]
 tile_data = PackedInt32Array(0, 131072, 1, 65536, 131072, 2, 131072, 131072, 3, 1, 196608, 5, 65537, 196608, 2, 131073, 196608, 7)
@@ -493,7 +493,7 @@ one_shot = true
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_q3pat")
+stream = ExtResource("5_b4flv")
 volume_db = -9.369
 autoplay = true
 
