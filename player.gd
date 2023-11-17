@@ -202,7 +202,6 @@ func _physics_process(delta):
 	elif is_jumping and is_on_floor():
 		animated_sprite.play("jump_land")
 		is_jumping = false
-		
 
 	# Handle running
 	elif direction and not is_jumping:
@@ -213,6 +212,5 @@ func _physics_process(delta):
 		if not (animated_sprite.animation == "jump_land" and animated_sprite.is_playing()):
 			animated_sprite.play("idle")
 			$GPUParticles2D.emitting = false
-			
 
 	move_and_slide()
