@@ -875,12 +875,11 @@ curve = SubResource("Curve_lflnq")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o8efj"]
 lifetime_randomness = 0.08
 particle_flag_disable_z = true
-inherit_velocity_ratio = 0.146
 direction = Vector3(-5, 2.08165e-12, 2.08165e-12)
 spread = 84.33
 flatness = 0.837
-initial_velocity_min = 35.0
-initial_velocity_max = 35.0
+initial_velocity_min = 23.76
+initial_velocity_max = 23.76
 angular_velocity_min = 10.0
 angular_velocity_max = 10.0
 gravity = Vector3(2.08165e-12, -20, 2.08165e-12)
@@ -985,12 +984,15 @@ pitch_scale = 1.25
 stream = ExtResource("17_37xk6")
 pitch_scale = 0.49
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+[node name="Dust" type="GPUParticles2D" parent="."]
 position = Vector2(-10, -1)
+emitting = false
 amount = 25
 process_material = SubResource("ParticleProcessMaterial_o8efj")
 texture = ExtResource("23_dwvf7")
-lifetime = 0.5
-explosiveness = 0.51
+one_shot = true
+speed_scale = 1.98
+explosiveness = 0.71
+randomness = 0.19
 collision_base_size = 0.0
 local_coords = true

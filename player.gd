@@ -20,6 +20,8 @@ signal died
 @onready var camera = get_parent().get_node("Camera2D")
 @onready var initial_zoom = get_parent().get_node("Camera2D").zoom
 
+var previous_direction = 1
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_jumping = false
@@ -124,12 +126,22 @@ func _physics_process(delta):
 		
 		# Store the facing direction so we know which direction to apply
 		# velocty for wall jumps
-		facing_direction = direction
+		if previous_direction != -1:
+			print("facing left")
+			previous_direction = -1
+			$Dust.position.x = 15
+			$Dust.process_material.set("direction", Vector3(5, 0 ,0))
+			$Dust.emitting = true
 	elif direction == 1:
 		animated_sprite.flip_h = false
 		$GPUParticles2D.process_material.set("emission_shape_offset", Vector3(-1.5, 0, 0))
 		
-		facing_direction = direction
+		if previous_direction != 1:
+			print("facing right")
+			previous_direction = 1
+			$Dust.position.x = -15
+			$Dust.process_material.set("direction", Vector3(-5, 0 ,0))
+			$Dust.emitting = true
 
 	# Handle applying horizontal velocity
 	if direction:
