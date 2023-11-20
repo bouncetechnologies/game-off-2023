@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=3 uid="uid://vmf8vril5fux"]
+[gd_scene load_steps=135 format=3 uid="uid://vmf8vril5fux"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_mmrc5"]
 [ext_resource type="Texture2D" uid="uid://dtg21fsy6mglx" path="res://assets/Character Idle 48x48.png" id="2_3y6ko"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://tycww2tgh5g4" path="res://GUILTYNEBULA-constant.wav" id="19_s7waq"]
 [ext_resource type="AudioStream" uid="uid://c17cispb0lpfn" path="res://ANXIOUSDJ-j.wav" id="20_dnpa6"]
 [ext_resource type="AudioStream" uid="uid://dfsq6bvceei45" path="res://roll.wav" id="21_j2r2x"]
+[ext_resource type="Texture2D" uid="uid://cnn44vq5ru24k" path="res://dirt.png" id="23_dwvf7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3m1ei"]
 height = 30.25
@@ -857,6 +858,41 @@ data = PackedByteArray(109, 254, 109, 254, 109, 254, 109, 254, 109, 254, 109, 25
 format = 1
 stereo = true
 
+[sub_resource type="Curve" id="Curve_hav3e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.278146, 0.904466), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4mgex"]
+curve = SubResource("Curve_hav3e")
+
+[sub_resource type="Curve" id="Curve_lflnq"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.615894, 0.628886), 1.49955, 1.49955, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_rxkm8"]
+curve = SubResource("Curve_lflnq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o8efj"]
+lifetime_randomness = 0.08
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.146
+direction = Vector3(-5, 2.08165e-12, 2.08165e-12)
+spread = 84.33
+flatness = 0.837
+initial_velocity_min = 35.0
+initial_velocity_max = 35.0
+angular_velocity_min = 10.0
+angular_velocity_max = 10.0
+gravity = Vector3(2.08165e-12, -20, 2.08165e-12)
+radial_accel_min = 35.0
+radial_accel_max = 35.0
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_rxkm8")
+alpha_curve = SubResource("CurveTexture_4mgex")
+turbulence_noise_strength = 0.05
+turbulence_noise_scale = 2.316
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mmrc5")
 
@@ -948,3 +984,13 @@ pitch_scale = 1.25
 [node name="Run" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_37xk6")
 pitch_scale = 0.49
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+position = Vector2(-10, -1)
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_o8efj")
+texture = ExtResource("23_dwvf7")
+lifetime = 0.5
+explosiveness = 0.51
+collision_base_size = 0.0
+local_coords = true

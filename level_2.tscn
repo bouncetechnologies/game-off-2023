@@ -20,7 +20,7 @@ position = Vector2(-50, 13)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(11, 40)
+position = Vector2(11, 69)
 zoom = Vector2(3, 3)
 limit_left = 0
 limit_bottom = 648
