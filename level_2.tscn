@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://dr7mh3cylga6a" path="res://dungeon_tileset.tres" id="1_yuxd1"]
 [ext_resource type="PackedScene" uid="uid://vmf8vril5fux" path="res://player.tscn" id="2_hwd1q"]
-[ext_resource type="AudioStream" uid="uid://c2h5ab6j37e0w" path="res://GRAYPULSAR-2_4.wav" id="3_n46qp"]
+[ext_resource type="AudioStream" uid="uid://c8j8jy5i7dmbe" path="res://GRAYPULSAR-2_5.wav" id="3_mhjhy"]
 
 [node name="Level 2" type="Node2D"]
 
@@ -32,6 +32,6 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_n46qp")
+stream = ExtResource("3_mhjhy")
 volume_db = -9.369
 autoplay = true
