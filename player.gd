@@ -10,8 +10,8 @@ signal died
 @export var SPEED_TERMINAL_VELOCITY = 300.0
 @export var JUMP_VELOCITY = -400.0
 @export var JUMP_CUT_VELOCITY = -50.0
-@export var JUMP_VELOCITY_WALL_SLIDE = -300.0
-@export var JUMP_VELOCITY_WALL_SLIDE_X = -275
+@export var JUMP_VELOCITY_WALL_SLIDE = -250.0
+@export var JUMP_VELOCITY_WALL_SLIDE_X = -300
 @export var MIN_SCALE = 1
 @export var MAX_SCALE = 10
 @export var SCALE_INCREMENT = 0.1
@@ -201,7 +201,7 @@ func _physics_process(delta):
 			
 		# Handle wall jump
 		if Input.is_action_just_pressed("jump"):
-			velocity.y = (JUMP_VELOCITY_WALL_SLIDE * 1.25) * (sqrt(scale.y) * 1.5)
+			velocity.y = (JUMP_VELOCITY_WALL_SLIDE * 1.25) * (sqrt(scale.y))
 			velocity.x = -JUMP_VELOCITY_WALL_SLIDE_X * sqrt(scale.x)
 			animated_sprite.flip_h = false
 			animated_sprite.play("jump_ascending")
@@ -221,7 +221,7 @@ func _physics_process(delta):
 			
 		# Handle wall jump
 		if Input.is_action_just_pressed("jump"):
-			velocity.y = (JUMP_VELOCITY_WALL_SLIDE * 1.25) * (sqrt(scale.y) * 1.5)
+			velocity.y = (JUMP_VELOCITY_WALL_SLIDE * 1.25) * (sqrt(scale.y))
 			velocity.x = JUMP_VELOCITY_WALL_SLIDE_X * sqrt(scale.x)
 			animated_sprite.flip_h = true
 			animated_sprite.play("jump_ascending")
