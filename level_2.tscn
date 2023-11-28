@@ -18,11 +18,10 @@
 script = ExtResource("1_vx2p2")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-follow_viewport_enabled = true
-scroll_ignore_camera_zoom = true
 script = ExtResource("3_72sla")
 
 [node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.005, 0.005)
 motion_mirroring = Vector2(383.09, 2.08165e-12)
 
 [node name="Bg" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
@@ -31,7 +30,7 @@ scale = Vector2(0.332562, 0.332562)
 texture = ExtResource("6_3uj7v")
 
 [node name="Sun" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
-position = Vector2(183, 87)
+position = Vector2(183, 7)
 scale = Vector2(0.455307, 0.455307)
 texture = ExtResource("3_oiyp1")
 
@@ -102,7 +101,7 @@ position = Vector2(-50, 13)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(11, 69)
+position = Vector2(11, 55.56)
 zoom = Vector2(3, 3)
 limit_left = 0
 limit_bottom = 178
