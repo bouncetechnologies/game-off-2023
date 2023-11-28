@@ -41,6 +41,7 @@ func _process(delta):
 	
 	$Dust.process_material.set("scale_min", scale.x)
 	$Dust.process_material.set("scale_max", scale.x)
+
 	
 	var player_frame
 	
