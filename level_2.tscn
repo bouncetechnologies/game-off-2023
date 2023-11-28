@@ -20,7 +20,6 @@ script = ExtResource("1_vx2p2")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 offset = Vector2(2.08165e-12, 100)
 transform = Transform2D(1, 0, 0, 1, 2.08165e-12, 100)
-follow_viewport_enabled = true
 follow_viewport_scale = 0.25
 script = ExtResource("3_72sla")
 
@@ -30,13 +29,13 @@ motion_scale = Vector2(0.005, 0.005)
 motion_mirroring = Vector2(383.09, 2.08165e-12)
 
 [node name="Bg" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
-position = Vector2(-72, -52)
+position = Vector2(0, -32)
 scale = Vector2(0.332562, 0.332562)
 texture = ExtResource("6_3uj7v")
 centered = false
 
 [node name="Sun" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
-position = Vector2(72, -44)
+position = Vector2(144, -24)
 scale = Vector2(0.455307, 0.455307)
 texture = ExtResource("3_oiyp1")
 centered = false
@@ -47,40 +46,40 @@ motion_scale = Vector2(0.01, 0.01)
 motion_mirroring = Vector2(600, 2.08165e-12)
 
 [node name="FarHill" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
-position = Vector2(-116, 86)
+position = Vector2(-44, 106)
 scale = Vector2(0.317181, 0.317181)
 texture = ExtResource("4_qg8uq")
 centered = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(2.08165e-12, 2.08165e-12)
-motion_scale = Vector2(-0.05, -0.05)
+motion_scale = Vector2(0.03, 0.03)
 motion_mirroring = Vector2(378.28, 2.08165e-12)
 
 [node name="KindaFarHills" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(-79, 105)
+position = Vector2(-6.99998, 125)
 scale = Vector2(0.283831, 0.283831)
 texture = ExtResource("5_qm53x")
 centered = false
 
 [node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-motion_scale = Vector2(0.59, 0.59)
-motion_mirroring = Vector2(371.85, 2.08165e-12)
+position = Vector2(35, 2.08165e-12)
+motion_scale = Vector2(0.01, 0.01)
+motion_mirroring = Vector2(373.35, 2.08165e-12)
 
 [node name="CloudsBlack" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
-position = Vector2(-57.39, 17.27)
+position = Vector2(15.61, 7.26999)
 scale = Vector2(0.325, 0.325)
 texture = ExtResource("6_467fj")
 centered = false
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-motion_scale = Vector2(0.6, 0.6)
-motion_mirroring = Vector2(371.85, 2.08165e-12)
+position = Vector2(35, 2.08165e-12)
+motion_scale = Vector2(0.01, 0.01)
+motion_mirroring = Vector2(373.35, 2.08165e-12)
 
 [node name="CloudsWhite" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
-position = Vector2(-58, 16)
+position = Vector2(15, 6)
 scale = Vector2(0.324541, 0.324541)
 texture = ExtResource("7_pktwv")
 centered = false
@@ -91,7 +90,7 @@ motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(370.98, 2.08165e-12)
 
 [node name="GrassFar" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(-73, 113)
+position = Vector2(-1.00003, 133)
 scale = Vector2(0.337674, 0.337674)
 texture = ExtResource("8_s81vi")
 centered = false
@@ -101,7 +100,7 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 motion_mirroring = Vector2(378.28, 2.08165e-12)
 
 [node name="GrassClose" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
-position = Vector2(-72, 112)
+position = Vector2(1.52588e-05, 132)
 scale = Vector2(0.335069, 0.335069)
 texture = ExtResource("9_2lf8u")
 centered = false
