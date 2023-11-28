@@ -10,8 +10,8 @@ signal died
 @export var SPEED_TERMINAL_VELOCITY = 300.0
 @export var JUMP_VELOCITY = -400.0
 @export var JUMP_CUT_VELOCITY = -50.0
-@export var JUMP_VELOCITY_WALL_SLIDE = -250.0
-@export var JUMP_VELOCITY_WALL_SLIDE_X = -300
+@export var JUMP_VELOCITY_WALL_SLIDE = -200.0
+@export var JUMP_VELOCITY_WALL_SLIDE_X = -150
 @export var MIN_SCALE = 1
 @export var MAX_SCALE = 10
 @export var SCALE_INCREMENT = 0.1
@@ -104,6 +104,10 @@ func _physics_process(delta):
 		return
 	else:
 		$Scale.stop()
+		
+	if is_on_floor():
+		$JustWallJumpedTimer.start()
+		$JustWallJumpedTimer.stop()
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -163,7 +167,7 @@ func _physics_process(delta):
 			# Therefore we slowly give them back control of the direction so they can't
 			# get back to the wall at a higher point than where they jumped off.
 			var factor = pow((1 - $JustWallJumpedTimer.time_left), 2.0)
-			new_velocity_x = direction * -JUMP_VELOCITY_WALL_SLIDE_X * factor * sqrt(scale.x)
+			new_velocity_x = direction * -JUMP_VELOCITY_WALL_SLIDE_X * factor * sqrt(scale.x) * 0.1
 			velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL)
 		elif not is_on_wall_only() and $JustWallJumpedTimer.time_left != 0 and direction != last_wall_touched:
 			# We've recently jumped off a wall, and we're trying to move away from the wall.
@@ -202,8 +206,8 @@ func _physics_process(delta):
 			
 		# Handle wall jump
 		if Input.is_action_just_pressed("jump"):
-			velocity.y = (JUMP_VELOCITY_WALL_SLIDE * 1.25) * (sqrt(scale.y))
-			velocity.x = -JUMP_VELOCITY_WALL_SLIDE_X * sqrt(scale.x)
+			velocity.y = JUMP_VELOCITY_WALL_SLIDE * scale.y
+			velocity.x = -JUMP_VELOCITY_WALL_SLIDE_X * scale.x
 			animated_sprite.flip_h = false
 			animated_sprite.play("jump_ascending")
 			is_jumping = true
@@ -222,8 +226,8 @@ func _physics_process(delta):
 			
 		# Handle wall jump
 		if Input.is_action_just_pressed("jump"):
-			velocity.y = (JUMP_VELOCITY_WALL_SLIDE * 1.25) * (sqrt(scale.y))
-			velocity.x = JUMP_VELOCITY_WALL_SLIDE_X * sqrt(scale.x)
+			velocity.y = JUMP_VELOCITY_WALL_SLIDE * scale.y
+			velocity.x = JUMP_VELOCITY_WALL_SLIDE_X * scale.x
 			animated_sprite.flip_h = true
 			animated_sprite.play("jump_ascending")
 			is_jumping = true
