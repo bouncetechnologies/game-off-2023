@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dh0not6426sqt"]
+[gd_scene load_steps=15 format=3 uid="uid://dh0not6426sqt"]
 
 [ext_resource type="Script" path="res://level_2.gd" id="1_vx2p2"]
 [ext_resource type="TileSet" uid="uid://dr7mh3cylga6a" path="res://dungeon_tileset.tres" id="1_yuxd1"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b6b2blgd6uyvr" path="res://kinda_far_hills.png" id="5_qm53x"]
 [ext_resource type="Texture2D" uid="uid://bpmbo0oun56bi" path="res://bg.png" id="6_3uj7v"]
 [ext_resource type="Texture2D" uid="uid://dwb17hsr0ohhn" path="res://clouds_black.png" id="6_467fj"]
+[ext_resource type="Script" path="res://ParallaxLayer.gd" id="6_optkf"]
 [ext_resource type="Texture2D" uid="uid://da0ku3gkb26xn" path="res://clouds_white.png" id="7_pktwv"]
 [ext_resource type="Texture2D" uid="uid://cs3l4bhdh51be" path="res://grass_far.png" id="8_s81vi"]
 [ext_resource type="Texture2D" uid="uid://dea1bwm1dlypq" path="res://grass_close.png" id="9_2lf8u"]
@@ -64,8 +65,9 @@ centered = false
 
 [node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(35, 2.08165e-12)
-motion_scale = Vector2(0.01, 0.01)
+motion_scale = Vector2(0.012, 0.012)
 motion_mirroring = Vector2(373.35, 2.08165e-12)
+script = ExtResource("6_optkf")
 
 [node name="CloudsBlack" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
 position = Vector2(15.61, 7.26999)
@@ -77,6 +79,7 @@ centered = false
 position = Vector2(35, 2.08165e-12)
 motion_scale = Vector2(0.01, 0.01)
 motion_mirroring = Vector2(373.35, 2.08165e-12)
+script = ExtResource("6_optkf")
 
 [node name="CloudsWhite" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
 position = Vector2(15, 6)
@@ -119,7 +122,7 @@ position = Vector2(-50, 13)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(11, 56)
+position = Vector2(11, 69)
 zoom = Vector2(3, 3)
 limit_left = 0
 limit_bottom = 178
