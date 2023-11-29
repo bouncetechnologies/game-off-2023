@@ -54,7 +54,7 @@ func _process(delta):
 	$GPUParticles2D.texture = player_frame
 
 func _physics_process(delta):
-	if $RayCastDownSpike.is_colliding() and $RayCastDownSpike.get_collider().name == "TileMapSpikes" and not dead:
+	if $RayCastDownSpike.is_colliding() and $RayCastDownSpike.get_collider().name == "TileMapSpikes" and not dead and $invincibilitytimer.is_stopped():
 		$Death.play()
 		$AnimationPlayer.play("disolve")
 		dead = true
@@ -67,6 +67,8 @@ func _physics_process(delta):
 	# Handle respawn
 	if dead and not $Death.is_playing():
 		dead = false
+		$invincibilitytimer.start()
+		velocity = Vector2.ZERO
 		position = respawn
 		animated_sprite.play("idle")
 		$AnimationPlayer.play_backwards("disolve")
@@ -83,7 +85,8 @@ func _physics_process(delta):
 	var collider_left = $RayCastLeft.get_collider()
 	var collider_right = $RayCastRight.get_collider()
 	
-	if collider_left and collider_left.is_in_group("kill_wall") or collider_right and collider_right.is_in_group("kill_wall"):
+	print($invincibilitytimer.is_stopped())
+	if collider_left and collider_left.is_in_group("kill_wall") or collider_right and collider_right.is_in_group("kill_wall") and $invincibilitytimer.is_stopped():
 		$Death.play()
 		$AnimationPlayer.play("disolve")
 		dead = true
