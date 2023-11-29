@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dh0not6426sqt"]
+[gd_scene load_steps=8 format=3 uid="uid://dh0not6426sqt"]
 
 [ext_resource type="Script" path="res://level_2.gd" id="1_vx2p2"]
 [ext_resource type="TileSet" uid="uid://dr7mh3cylga6a" path="res://dungeon_tileset.tres" id="1_yuxd1"]
 [ext_resource type="PackedScene" uid="uid://vmf8vril5fux" path="res://player.tscn" id="2_hwd1q"]
 [ext_resource type="PackedScene" uid="uid://5j5infmaqmbj" path="res://parallax_background.tscn" id="2_owqtg"]
 [ext_resource type="AudioStream" uid="uid://dtlea0f0imbgf" path="res://output.mp3" id="3_4tvcl"]
+[ext_resource type="PackedScene" uid="uid://dni6do131kai" path="res://moving_platform.tscn" id="3_6wqsi"]
 
 [sub_resource type="Curve2D" id="Curve2D_x66wt"]
 _data = {
@@ -17,8 +18,8 @@ script = ExtResource("1_vx2p2")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_owqtg")]
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
-position = Vector2(-81, 125)
+[node name="AnimatableBody2D" parent="." instance=ExtResource("3_6wqsi")]
+position = Vector2(3367, -108)
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(-81, 125)

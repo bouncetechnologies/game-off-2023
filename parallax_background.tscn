@@ -1,15 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://5j5infmaqmbj"]
+[gd_scene load_steps=14 format=3 uid="uid://5j5infmaqmbj"]
 
 [ext_resource type="Script" path="res://ParallaxBackground.gd" id="1_u4dth"]
 [ext_resource type="Texture2D" uid="uid://bpmbo0oun56bi" path="res://bg.png" id="2_4hfnu"]
 [ext_resource type="Texture2D" uid="uid://brav8ndt8i3h6" path="res://sun.png" id="3_mlffc"]
-[ext_resource type="Texture2D" uid="uid://cbo6wkr6ku82k" path="res://far_hill.png" id="4_fgn6k"]
+[ext_resource type="Texture2D" uid="uid://dqf3h28hnxj8m" path="res://hills_3.png" id="4_kdhpb"]
 [ext_resource type="Texture2D" uid="uid://b6b2blgd6uyvr" path="res://kinda_far_hills.png" id="5_3xq56"]
 [ext_resource type="Script" path="res://ParallaxLayer.gd" id="6_ker86"]
 [ext_resource type="Texture2D" uid="uid://dwb17hsr0ohhn" path="res://clouds_black.png" id="7_mpfgm"]
 [ext_resource type="Texture2D" uid="uid://da0ku3gkb26xn" path="res://clouds_white.png" id="8_7qke5"]
+[ext_resource type="Texture2D" uid="uid://bp3ovenpi3tap" path="res://hills_2.png" id="9_hwbwb"]
 [ext_resource type="Texture2D" uid="uid://cs3l4bhdh51be" path="res://grass_far.png" id="9_oxsyy"]
 [ext_resource type="Texture2D" uid="uid://dea1bwm1dlypq" path="res://grass_close.png" id="10_47e8s"]
+[ext_resource type="Texture2D" uid="uid://f0ucxaskr7vc" path="res://hills_1.png" id="11_qeq3m"]
+[ext_resource type="Texture2D" uid="uid://bkwafpo5bkiaq" path="res://lightning.png" id="13_2xma0"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 offset = Vector2(2.08165e-12, 100)
@@ -34,23 +37,18 @@ scale = Vector2(0.455307, 0.455307)
 texture = ExtResource("3_mlffc")
 centered = false
 
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
-position = Vector2(2.08165e-12, 2.08165e-12)
-motion_scale = Vector2(0.01, 0.01)
-motion_mirroring = Vector2(600, 2.08165e-12)
-
-[node name="FarHill" type="Sprite2D" parent="ParallaxLayer4"]
-position = Vector2(-44, 106)
-scale = Vector2(0.317181, 0.317181)
-texture = ExtResource("4_fgn6k")
-centered = false
-
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
 motion_scale = Vector2(0.03, 0.03)
 motion_mirroring = Vector2(378.28, 2.08165e-12)
 
+[node name="Hills3" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(194, 148)
+scale = Vector2(0.335069, 0.335069)
+texture = ExtResource("4_kdhpb")
+
 [node name="KindaFarHills" type="Sprite2D" parent="ParallaxLayer"]
+visible = false
 position = Vector2(-6.99998, 125)
 scale = Vector2(0.283831, 0.283831)
 texture = ExtResource("5_3xq56")
@@ -83,9 +81,15 @@ centered = false
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
 motion_scale = Vector2(0.1, 0.1)
-motion_mirroring = Vector2(370.98, 2.08165e-12)
+motion_mirroring = Vector2(385.48, 2.08165e-12)
+
+[node name="Hills2" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(193, 159)
+scale = Vector2(0.334635, 0.334635)
+texture = ExtResource("9_hwbwb")
 
 [node name="GrassFar" type="Sprite2D" parent="ParallaxLayer2"]
+visible = false
 position = Vector2(-1.00003, 133)
 scale = Vector2(0.337674, 0.337674)
 texture = ExtResource("9_oxsyy")
@@ -93,10 +97,25 @@ centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
-motion_mirroring = Vector2(378.28, 2.08165e-12)
+motion_mirroring = Vector2(385.58, 2.08165e-12)
+
+[node name="Hills1" type="Sprite2D" parent="ParallaxLayer3"]
+position = Vector2(193, 175)
+scale = Vector2(0.334852, 0.334852)
+texture = ExtResource("11_qeq3m")
 
 [node name="GrassClose" type="Sprite2D" parent="ParallaxLayer3"]
+visible = false
 position = Vector2(1.52588e-05, 132)
 scale = Vector2(0.335069, 0.335069)
 texture = ExtResource("10_47e8s")
 centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.005, 0.005)
+motion_mirroring = Vector2(382.53, 2.08165e-12)
+
+[node name="Lightning" type="Sprite2D" parent="ParallaxLayer4"]
+position = Vector2(182, 18)
+scale = Vector2(0.237124, 0.237124)
+texture = ExtResource("13_2xma0")
