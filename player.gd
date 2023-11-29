@@ -21,7 +21,7 @@ signal died
 @onready var initial_zoom = get_parent().get_node("Camera2D").zoom
 
 var previous_direction = 1
-var respawn = position
+var respawn = global_position
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -67,7 +67,11 @@ func _physics_process(delta):
 	# Handle respawn
 	if dead and not $Death.is_playing():
 		dead = false
-		get_tree().reload_current_scene()
+		position = respawn
+		animated_sprite.play("idle")
+		$AnimationPlayer.play_backwards("disolve")
+		$Life.play()
+		
 	elif dead:
 		$GPUParticles2D.emitting = false
 		return
