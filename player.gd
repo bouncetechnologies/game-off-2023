@@ -76,6 +76,7 @@ func _physics_process(delta):
 		$invincibilitytimer.start()
 		velocity = Vector2.ZERO
 		position = respawn
+		#scale = Vector2(1, 1)
 		animated_sprite.play("idle")
 		$AnimationPlayer.play_backwards("disolve")
 		$Life.play()
@@ -139,6 +140,10 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
+	
+	if dead:
+		direction = null
+		velocity = Vector2.ZERO
 	
 	if direction and not $Run.is_playing() and not is_jumping:
 		$Run.play()
