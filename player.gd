@@ -53,15 +53,21 @@ func _process(delta):
 	
 	$GPUParticles2D.texture = player_frame
 
+func spike_check():
+	for raycast in $SpikeDetectors.get_children():
+		if raycast.is_colliding() and raycast.get_collider().name == "TileMapSpikes" and not dead and $invincibilitytimer.is_stopped():
+			return true
+	
+	return false
+
 func _physics_process(delta):
-	if $RayCastDownSpike.is_colliding() and $RayCastDownSpike.get_collider().name == "TileMapSpikes" and not dead and $invincibilitytimer.is_stopped():
+	if spike_check():
 		$Death.play()
 		$AnimationPlayer.play("disolve")
 		dead = true
 		died.emit()
 		
-	if $RayCastDownSpike.is_colliding() and $RayCastDownSpike.get_collider().name == "TileMapCheckPoints":
-		print("hit checkpoint")
+	if $SpikeDetectors/RayCastDownSpike.is_colliding() and $SpikeDetectors/RayCastDownSpike.get_collider().name == "TileMapCheckPoints":
 		respawn = position
 	
 	# Handle respawn
@@ -85,7 +91,6 @@ func _physics_process(delta):
 	var collider_left = $RayCastLeft.get_collider()
 	var collider_right = $RayCastRight.get_collider()
 	
-	print($invincibilitytimer.is_stopped())
 	if collider_left and collider_left.is_in_group("kill_wall") or collider_right and collider_right.is_in_group("kill_wall") and $invincibilitytimer.is_stopped():
 		$Death.play()
 		$AnimationPlayer.play("disolve")
@@ -152,7 +157,6 @@ func _physics_process(delta):
 		# Store the facing direction so we know which direction to apply
 		# velocty for wall jumps
 		if previous_direction != -1:
-			print("facing left")
 			previous_direction = -1
 			$Dust.position.x = 15
 			$Dust.process_material.set("direction", Vector3(5, 0 ,0))
@@ -162,7 +166,6 @@ func _physics_process(delta):
 		$GPUParticles2D.process_material.set("emission_shape_offset", Vector3(-1.5, 0, 0))
 		
 		if previous_direction != 1:
-			print("facing right")
 			previous_direction = 1
 			$Dust.position.x = -15
 			$Dust.process_material.set("direction", Vector3(-5, 0 ,0))
