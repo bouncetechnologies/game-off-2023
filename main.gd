@@ -8,12 +8,12 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	$ParallaxBackground.scale = $Player.scale
 
 
 func _physics_process(delta):
-	$ParallaxBackground.scale = $Player.scale
 		
 	if wall_should_move and not $Player.dead:
 		$MovingWall.position.x += delta * 100

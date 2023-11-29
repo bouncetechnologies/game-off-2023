@@ -26,13 +26,13 @@ motion_scale = Vector2(0.005, 0.005)
 motion_mirroring = Vector2(383.09, 2.08165e-12)
 
 [node name="Bg" type="Sprite2D" parent="ParallaxLayer7"]
-position = Vector2(0, -32)
+position = Vector2(0, -37.374)
 scale = Vector2(0.332562, 0.332562)
 texture = ExtResource("2_4hfnu")
 centered = false
 
 [node name="Sun" type="Sprite2D" parent="ParallaxLayer7"]
-position = Vector2(144, -24)
+position = Vector2(144, -29.374)
 scale = Vector2(0.455307, 0.455307)
 texture = ExtResource("3_mlffc")
 centered = false
@@ -43,7 +43,7 @@ motion_scale = Vector2(0.03, 0.03)
 motion_mirroring = Vector2(378.28, 2.08165e-12)
 
 [node name="Hills3" type="Sprite2D" parent="ParallaxLayer"]
-position = Vector2(194, 148)
+position = Vector2(194, 142.626)
 scale = Vector2(0.335069, 0.335069)
 texture = ExtResource("4_kdhpb")
 
@@ -61,7 +61,7 @@ motion_mirroring = Vector2(373.35, 2.08165e-12)
 script = ExtResource("6_ker86")
 
 [node name="CloudsBlack" type="Sprite2D" parent="ParallaxLayer6"]
-position = Vector2(15.61, 7.26999)
+position = Vector2(15.61, 1.89597)
 scale = Vector2(0.325, 0.325)
 texture = ExtResource("7_mpfgm")
 centered = false
@@ -73,7 +73,7 @@ motion_mirroring = Vector2(373.35, 2.08165e-12)
 script = ExtResource("6_ker86")
 
 [node name="CloudsWhite" type="Sprite2D" parent="ParallaxLayer5"]
-position = Vector2(15, 6)
+position = Vector2(15, 0.625977)
 scale = Vector2(0.324541, 0.324541)
 texture = ExtResource("8_7qke5")
 centered = false
@@ -84,7 +84,7 @@ motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(385.48, 2.08165e-12)
 
 [node name="Hills2" type="Sprite2D" parent="ParallaxLayer2"]
-position = Vector2(193, 159)
+position = Vector2(193, 153.626)
 scale = Vector2(0.334635, 0.334635)
 texture = ExtResource("9_hwbwb")
 
@@ -100,7 +100,7 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 motion_mirroring = Vector2(385.58, 2.08165e-12)
 
 [node name="Hills1" type="Sprite2D" parent="ParallaxLayer3"]
-position = Vector2(193, 175)
+position = Vector2(193, 169.626)
 scale = Vector2(0.334852, 0.334852)
 texture = ExtResource("11_qeq3m")
 
@@ -116,6 +116,6 @@ motion_scale = Vector2(0.005, 0.005)
 motion_mirroring = Vector2(382.53, 2.08165e-12)
 
 [node name="Lightning" type="Sprite2D" parent="ParallaxLayer4"]
-position = Vector2(182, 18)
+position = Vector2(182, 12.626)
 scale = Vector2(0.237124, 0.237124)
 texture = ExtResource("13_2xma0")
