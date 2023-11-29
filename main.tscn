@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://vmf8vril5fux" path="res://player.tscn" id="1_lc8ti"]
 [ext_resource type="Script" path="res://main.gd" id="1_pgrpc"]
 [ext_resource type="PackedScene" uid="uid://cf55qaxfbqx3b" path="res://tutorial_level.tscn" id="2_56prq"]
-[ext_resource type="PackedScene" path="res://moving_wall.tscn" id="3_r4j8k"]
+[ext_resource type="PackedScene" uid="uid://0m6v03rtlapk" path="res://moving_wall.tscn" id="3_r4j8k"]
 [ext_resource type="AudioStream" uid="uid://dfeo7yvfped6g" path="res://DARKSOUP-1.wav" id="5_vx8nm"]
 
 [node name="Main" type="Node2D"]
