@@ -1,0 +1,107 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw3xi5wibk2xi"]
+
+[ext_resource type="Texture2D" uid="uid://c3qyij4pfue2m" path="res://assets/wasd.png" id="1_btxwq"]
+[ext_resource type="Texture2D" uid="uid://x1tgotx2wg8b" path="res://assets/updown.png" id="1_cbjbi"]
+[ext_resource type="Texture2D" uid="uid://q14putsplo02" path="res://assets/landing.png" id="3_t8ou5"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Updown" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(942, 486)
+scale = Vector2(0.227273, 0.227273)
+texture = ExtResource("1_cbjbi")
+
+[node name="Label5" type="Label" parent="CanvasLayer/Updown"]
+top_level = true
+offset_left = 339.0
+offset_top = 500.0
+offset_right = 380.0
+offset_bottom = 523.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Right"
+
+[node name="Wasd" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(253, 491)
+scale = Vector2(0.237668, 0.237668)
+texture = ExtResource("1_btxwq")
+
+[node name="Label" type="Label" parent="CanvasLayer/Wasd"]
+top_level = true
+offset_left = 234.0
+offset_top = 403.0
+offset_right = 275.0
+offset_bottom = 426.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Jump"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Wasd"]
+top_level = true
+offset_left = 128.0
+offset_top = 503.0
+offset_right = 169.0
+offset_bottom = 526.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Left"
+
+[node name="Label3" type="Label" parent="CanvasLayer/Wasd"]
+top_level = true
+offset_left = 228.0
+offset_top = 544.0
+offset_right = 281.0
+offset_bottom = 567.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Crouch"
+
+[node name="Label4" type="Label" parent="CanvasLayer/Wasd"]
+top_level = true
+offset_left = 897.0
+offset_top = 542.0
+offset_right = 984.0
+offset_bottom = 565.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Scale down"
+
+[node name="Label5" type="Label" parent="CanvasLayer/Wasd"]
+top_level = true
+offset_left = 908.0
+offset_top = 403.0
+offset_right = 972.0
+offset_bottom = 426.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Scale up"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_top = 188.0
+offset_right = 1152.0
+offset_bottom = 211.0
+theme_override_font_sizes/font_size = 32
+text = "Adjust"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 279.0
+offset_top = 244.0
+offset_right = 873.0
+offset_bottom = 267.0
+text = "Make yourself big. Or make yourself small. You will need to Adjust to survive."
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+offset_left = 489.0
+offset_top = 276.0
+offset_right = 896.0
+offset_bottom = 299.0
+theme_override_font_sizes/font_size = 13
+text = "Press the space bar to start."
+
+[node name="Landing" type="Sprite2D" parent="."]
+position = Vector2(575.958, 315)
+scale = Vector2(1.23906, 1.23906)
+texture = ExtResource("3_t8ou5")
