@@ -936,6 +936,11 @@ position = Vector2(0.168961, -16.1791)
 rotation = 1.5708
 target_position = Vector2(-16, 6.99382e-07)
 
+[node name="RayCastDownSpike" type="RayCast2D" parent="."]
+position = Vector2(0.168961, -16.1791)
+rotation = 1.5708
+target_position = Vector2(17.1791, 0.168899)
+
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamWAV_xloek")
 volume_db = 1.0

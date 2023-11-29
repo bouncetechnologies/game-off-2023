@@ -21,6 +21,7 @@ signal died
 @onready var initial_zoom = get_parent().get_node("Camera2D").zoom
 
 var previous_direction = 1
+var respawn = position
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -53,6 +54,15 @@ func _process(delta):
 	$GPUParticles2D.texture = player_frame
 
 func _physics_process(delta):
+	if $RayCastDownSpike.is_colliding() and $RayCastDownSpike.get_collider().name == "TileMapSpikes" and not dead:
+		$Death.play()
+		$AnimationPlayer.play("disolve")
+		dead = true
+		died.emit()
+		
+	if $RayCastDownSpike.is_colliding() and $RayCastDownSpike.get_collider().name == "TileMapCheckPoints":
+		print("hit checkpoint")
+		respawn = position
 	
 	# Handle respawn
 	if dead and not $Death.is_playing():
