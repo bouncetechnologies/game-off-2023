@@ -977,15 +977,15 @@ target_position = Vector2(0.179056, -11.831)
 
 [node name="RayCast2D7" type="RayCast2D" parent="SpikeDetectors"]
 position = Vector2(-8.8209, 0.168993)
-target_position = Vector2(-6, 2.17199e-05)
+target_position = Vector2(-5, 1.81e-05)
 
 [node name="RayCast2D9" type="RayCast2D" parent="SpikeDetectors"]
 position = Vector2(-8.82091, -2.83101)
-target_position = Vector2(-6, 2.16961e-05)
+target_position = Vector2(-5, 1.81e-05)
 
 [node name="RayCast2D8" type="RayCast2D" parent="SpikeDetectors"]
 position = Vector2(-8.82089, 3.16899)
-target_position = Vector2(-6, 2.16961e-05)
+target_position = Vector2(-5, 1.81e-05)
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamWAV_xloek")

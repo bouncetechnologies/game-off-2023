@@ -19,9 +19,12 @@ signal died
 enum Scale { SMALL_SCALE = 1, MEDIUM_SCALE = 5, BIG_SCALE = 10 }
 enum ScaleChangeType { INCREASE = 1, DECREASE = -1 }
 const SCALE_INTERPOLATION_STEP = 10
-
 var SCALES = [Scale.SMALL_SCALE, Scale.MEDIUM_SCALE, Scale.BIG_SCALE]
+
 var current_scale_index = 0
+var scale_update_progress = 1.0
+var scale_transition_duration = 0.5 # Duration in seconds
+var new_scale_value = Scale.MEDIUM_SCALE
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var camera = $Camera2D
@@ -73,16 +76,12 @@ func initialise_scale_update(change_type: ScaleChangeType):
 	new_scale_value = SCALES[current_scale_index]
 	if scale != Vector2(new_scale_value, new_scale_value):
 		scale_update_progress = 0.0
-	
-var scale_update_progress = 1.0
-var scale_transition_duration = 0.5 # Duration in seconds
-var new_scale_value = Scale.MEDIUM_SCALE
+
 
 func update_scale(delta):
 	if scale_update_progress < 1.0:
 		scale_update_progress += delta / scale_transition_duration
 		scale_update_progress = clamp(scale_update_progress, 0.0, 1.0)
-		print(scale_update_progress)
 		scale = lerp(scale, Vector2(new_scale_value, new_scale_value), scale_update_progress)
 		
 		camera.zoom.x = initial_zoom.x * 2.0/scale.x
