@@ -19,11 +19,11 @@ func _physics_process(delta):
 	
 	if $Player.dead:
 		wall_should_move = false
-		$Camera2D.position = $Player.respawn
+		#$Camera2D.position = $Player.respawn
 		$MovingWall.position.x = $Player.respawn.x - 200
 		$Timer.start()
 		
 
 
 func _on_timer_timeout():
-	wall_should_move = true
+	wall_should_move = false
