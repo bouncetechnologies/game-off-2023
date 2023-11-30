@@ -24,18 +24,6 @@ layer_1/tile_data = PackedInt32Array(-458746, 65536, 2, -393210, 196608, 3, -327
 position = Vector2(191, -157)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../Camera2D")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(191, -157)
-zoom = Vector2(3, 3)
-limit_left = 0
-limit_bottom = 648
-limit_smoothed = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-editor_draw_limits = true
-editor_draw_drag_margin = true
 
 [node name="MovingWall" parent="." instance=ExtResource("3_r4j8k")]
 position = Vector2(2.08165e-12, 520)
