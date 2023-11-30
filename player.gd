@@ -140,7 +140,7 @@ func _physics_process(delta):
 		died.emit()
 		
 	# Handle scaling
-	if Input.is_action_just_pressed("scale_up"):
+	if Input.is_action_just_pressed("scale_up") and not $RayCastUp.is_colliding() and not ($RayCastLeft.is_colliding() and $RayCastRight.is_colliding()):
 		initialise_scale_update(ScaleChangeType.INCREASE)
 	elif Input.is_action_just_pressed("scale_down"):
 		initialise_scale_update(ScaleChangeType.DECREASE)
