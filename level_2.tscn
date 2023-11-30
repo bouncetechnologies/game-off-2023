@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://vmf8vril5fux" path="res://player.tscn" id="2_hwd1q"]
 [ext_resource type="PackedScene" uid="uid://5j5infmaqmbj" path="res://parallax_background.tscn" id="2_owqtg"]
 [ext_resource type="AudioStream" uid="uid://dtlea0f0imbgf" path="res://output.mp3" id="3_4tvcl"]
-[ext_resource type="PackedScene" uid="uid://dni6do131kai" path="res://moving_platform.tscn" id="3_6wqsi"]
+[ext_resource type="PackedScene" path="res://moving_platform.tscn" id="3_6wqsi"]
 [ext_resource type="PackedScene" uid="uid://0m6v03rtlapk" path="res://moving_wall.tscn" id="7_3s4oq"]
 
 [sub_resource type="Curve2D" id="Curve2D_x66wt"]
