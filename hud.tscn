@@ -1,6 +1,10 @@
-[gd_scene format=3 uid="uid://kdt2pjdvycra"]
+[gd_scene load_steps=3 format=3 uid="uid://kdt2pjdvycra"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_hf35j"]
+[ext_resource type="Theme" uid="uid://u34jkkmbyrih" path="res://fira.tres" id="2_btbfw"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_hf35j")
 
 [node name="ColorRect3" type="ColorRect" parent="."]
 anchors_preset = -1
@@ -20,10 +24,11 @@ anchor_left = 0.006
 anchor_top = 0.006
 anchor_right = 0.077
 anchor_bottom = 0.045
-offset_left = 0.0879999
-offset_top = 1.112
-offset_right = 0.295992
-offset_bottom = 0.839999
+offset_left = 6.088
+offset_top = 3.112
+offset_right = 36.296
+offset_bottom = 2.84
+theme = ExtResource("2_btbfw")
 text = "deaths: 0"
 scroll_active = false
 
@@ -33,7 +38,7 @@ anchor_left = 0.888
 anchor_top = 0.011
 anchor_right = 0.994
 anchor_bottom = 0.054
-offset_left = 4.02392
+offset_left = -32.9761
 offset_top = -4.128
 offset_right = 3.91198
 offset_bottom = -3.992
@@ -41,13 +46,14 @@ color = Color(0, 0, 0, 1)
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 anchors_preset = -1
-anchor_left = 0.895
+anchor_left = 0.881
 anchor_top = 0.012
 anchor_right = 0.989
-anchor_bottom = 0.051
-offset_left = 3.95995
-offset_top = -2.776
-offset_right = 3.67197
-offset_bottom = -3.048
-text = "Time: 00.00"
+anchor_bottom = 0.046
+offset_left = -11.912
+offset_top = -0.776
+offset_right = 9.67197
+offset_bottom = 2.192
+theme = ExtResource("2_btbfw")
+text = "Time: 00:00.00"
 scroll_active = false

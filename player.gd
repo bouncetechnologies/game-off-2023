@@ -64,6 +64,7 @@ func _physics_process(delta):
 	if spike_check():
 		$Death.play()
 		$AnimationPlayer.play("disolve")
+		$"/root/Hud".iterate_death_counter()
 		dead = true
 		died.emit()
 		
@@ -95,12 +96,14 @@ func _physics_process(delta):
 	if collider_left and collider_left.is_in_group("kill_wall") or collider_right and collider_right.is_in_group("kill_wall") and $invincibilitytimer.is_stopped():
 		$Death.play()
 		$AnimationPlayer.play("disolve")
+		$"/root/Hud".iterate_death_counter()
 		dead = true
 		died.emit()
 	
 	if position.y > 800:
 		$Death.play()
 		$AnimationPlayer.play("disolve")
+		$"/root/Hud".iterate_death_counter()
 		dead = true
 		died.emit()
 	
