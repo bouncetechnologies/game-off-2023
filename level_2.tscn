@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://RespawnBeam.gd" id="5_4itc6"]
 [ext_resource type="Script" path="res://EndBeam.gd" id="6_wu20j"]
 [ext_resource type="PackedScene" uid="uid://0m6v03rtlapk" path="res://moving_wall.tscn" id="7_3s4oq"]
-[ext_resource type="PackedScene" path="res://Level 3.tscn" id="7_847gp"]
+[ext_resource type="PackedScene" uid="uid://c1skb42n30wq5" path="res://Level 3.tscn" id="7_847gp"]
 
 [node name="Level 2" type="Node2D"]
 script = ExtResource("1_mluyh")

@@ -24,7 +24,7 @@ var SCALES = [Scale.SMALL_SCALE, Scale.MEDIUM_SCALE, Scale.BIG_SCALE]
 var current_scale_index = 0
 var scale_update_progress = 1.0
 var scale_transition_duration = 0.5 # Duration in seconds
-var new_scale_value = Scale.MEDIUM_SCALE
+var new_scale_value = Scale.SMALL_SCALE
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var camera = $Camera2D
@@ -140,7 +140,7 @@ func _physics_process(delta):
 		died.emit()
 		
 	# Handle scaling
-	if Input.is_action_just_pressed("scale_up"):
+	if Input.is_action_just_pressed("scale_up") and not $RayCastUp.is_colliding() and not ($RayCastLeft.is_colliding() and $RayCastRight.is_colliding()):
 		initialise_scale_update(ScaleChangeType.INCREASE)
 	elif Input.is_action_just_pressed("scale_down"):
 		initialise_scale_update(ScaleChangeType.DECREASE)
