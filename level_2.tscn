@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dh0not6426sqt"]
+[gd_scene load_steps=10 format=3 uid="uid://dh0not6426sqt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mluyh"]
 [ext_resource type="TileSet" uid="uid://dr7mh3cylga6a" path="res://dungeon_tileset.tres" id="1_yuxd1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://5j5infmaqmbj" path="res://parallax_background.tscn" id="2_owqtg"]
 [ext_resource type="AudioStream" uid="uid://dtlea0f0imbgf" path="res://output.mp3" id="3_4tvcl"]
 [ext_resource type="PackedScene" uid="uid://dni6do131kai" path="res://moving_platform.tscn" id="3_6wqsi"]
+[ext_resource type="Script" path="res://RespawnBeam.gd" id="5_4itc6"]
 [ext_resource type="PackedScene" uid="uid://0m6v03rtlapk" path="res://moving_wall.tscn" id="7_3s4oq"]
 
 [sub_resource type="Curve2D" id="Curve2D_x66wt"]
@@ -49,6 +50,12 @@ position = Vector2(-39, 65)
 tile_set = ExtResource("1_yuxd1")
 format = 2
 layer_0/tile_data = PackedInt32Array(-196565, 524288, 12, -65493, 524288, 13, -131029, 524288, 13, 13, 131072, 5, 14, 131072, 5, -65523, 524288, 13, -131059, 524288, 13, -196595, 524288, 12, 43, 131072, 5, 44, 131072, 5)
+
+[node name="RespawnBeam" type="RayCast2D" parent="TileMapCheckPoints"]
+position = Vector2(703, -19)
+scale = Vector2(20.48, 1)
+target_position = Vector2(0.146484, -328)
+script = ExtResource("5_4itc6")
 
 [node name="Player" parent="." instance=ExtResource("2_hwd1q")]
 position = Vector2(185, 65)
