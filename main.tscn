@@ -23,8 +23,6 @@ layer_1/tile_data = PackedInt32Array(-458746, 65536, 2, -393210, 196608, 3, -327
 [node name="Player" parent="." instance=ExtResource("1_lc8ti")]
 position = Vector2(191, -157)
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-
 [node name="MovingWall" parent="." instance=ExtResource("3_r4j8k")]
 position = Vector2(2.08165e-12, 520)
 
