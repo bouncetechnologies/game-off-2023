@@ -42,7 +42,12 @@ func _ready():
 	animated_sprite.play("idle")
 	$AnimationPlayer.play_backwards("disolve")
 	$Life.play()
+	set_initial_scale()
+	
+
+func set_initial_scale():
 	scale = Vector2i(Scale.MEDIUM_SCALE, Scale.MEDIUM_SCALE)
+	
 
 func _process(delta):
 	$GPUParticles2D.process_material.set("scale_min", scale.x)
@@ -109,7 +114,7 @@ func _physics_process(delta):
 		$invincibilitytimer.start()
 		velocity = Vector2.ZERO
 		position = respawn
-		#scale = Vector2(1, 1)
+		set_initial_scale()
 		animated_sprite.play("idle")
 		$AnimationPlayer.play_backwards("disolve")
 		$Life.play()
