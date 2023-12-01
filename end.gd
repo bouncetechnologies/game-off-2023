@@ -11,10 +11,9 @@ func _ready():
 	$CanvasLayer/Label2.text = "Your time was: %02d:%02d.%02d" % [data.minutes, data.seconds, data.msec]
 	$CanvasLayer/Label3.text = "You died {deaths} times".format({"deaths": data.deaths})
 
-
 func _on_button_pressed():
 	var time = "%02d minutes, %02d seconds and %02d msec" % [data.minutes, data.seconds, data.msec]
-	var message = "I died {deaths} times and completed within {time} playing https://bouncetechnologies.itch.io/game-off-2023\n#githubgameoff".format(
+	var message = "☠️ Death: {deaths}\n⌚️ Finish time: {time}\n\nhttps://bouncetechnologies.itch.io/game-off-2023\n#githubgameoff #IndieGame #GameDev #GameJam #NORT @github".format(
 		{
 			"deaths": data.deaths, 
 			"time": time
