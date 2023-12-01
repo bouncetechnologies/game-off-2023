@@ -23,3 +23,7 @@ func _on_button_pressed():
 	var message_encoded = message.uri_encode()
 	var url = "https://twitter.com/intent/tweet?text=" + message_encoded
 	OS.shell_open(url)
+
+
+func _on_button_2_pressed():
+	get_tree().change_scene_to_file("res://main_menu.tscn")
