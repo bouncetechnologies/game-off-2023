@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddrwf0k1dix4w"]
+[gd_scene load_steps=5 format=3 uid="uid://ddrwf0k1dix4w"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_6jf6j"]
 [ext_resource type="Texture2D" uid="uid://bpmbo0oun56bi" path="res://bg.png" id="2_kv8h6"]
+[ext_resource type="AudioStream" uid="uid://dfeo7yvfped6g" path="res://DARKSOUP-1.wav" id="3_t6kex"]
 
 [sub_resource type="Theme" id="Theme_bnkex"]
 
@@ -34,5 +35,9 @@ layout_mode = 2
 layout_mode = 2
 theme = SubResource("Theme_bnkex")
 text = "Start"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_t6kex")
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
