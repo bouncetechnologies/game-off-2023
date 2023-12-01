@@ -87,17 +87,10 @@ func update_scale(delta):
 		scale_update_progress = clamp(scale_update_progress, 0.0, 1.0)
 		scale = lerp(scale, Vector2(new_scale_value, new_scale_value), scale_update_progress)
 		
-		print(1.0/new_scale_value)
 		$Scale.pitch_scale = lerp(previous_scale_pitch, sqrt(1.0/new_scale_value), scale_update_progress)
 		if not $Scale.playing:
-			#$Scale.seek(0.0)
 			$Scale.play()
-		#sync_camera_zoom()
 		
-		#velocity = Vector2.ZERO
-		#move_and_slide()
-		#$Scale.pitch_scale = 1.0/scale.x
-		#$Scale.play()
 	else:
 		$Scale.stop()
 		previous_scale_pitch = $Scale.pitch_scale
@@ -162,34 +155,6 @@ func _physics_process(delta):
 		initialise_scale_update(ScaleChangeType.DECREASE)
 	 
 	update_scale(delta)
-	
-	#if scale_update_progress < 1.0:
-		#velocity = Vector2.ZERO
-		#return
-	
-	## Handle scaling
-	#if Input.is_action_pressed("scale_up") and scale.x < MAX_SCALE and not $RayCastUp.is_colliding() and not ($RayCastLeft.is_colliding() and $RayCastRight.is_colliding()):
-		#scale.x = clamp(scale.x + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
-		#scale.y = clamp(scale.y + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
-		#camera.zoom.x = initial_zoom.x * 1.0/scale.x
-		#camera.zoom.y = initial_zoom.y * 1.0/scale.y
-		#velocity = Vector2.ZERO
-		#move_and_slide()
-		#$Scale.pitch_scale = 1.0/scale.x
-		#$Scale.play()
-		#return
-	#elif Input.is_action_pressed("scale_down") and scale.x > MIN_SCALE:
-		#scale.x = clamp(scale.x - SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
-		#scale.y = clamp(scale.y - SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
-		#camera.zoom.x = initial_zoom.x * 1.0/scale.x
-		#camera.zoom.y = initial_zoom.y * 1.0/scale.y
-		#velocity = Vector2.ZERO
-		#move_and_slide()
-		#$Scale.pitch_scale = 1.0/scale.x
-		#$Scale.play()
-		#return
-	#else:
-		#$Scale.stop()
 		
 	if is_on_floor():
 		$JustWallJumpedTimer.start()
@@ -203,11 +168,6 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
-	
-	# Handle camera
-	#camera.drag_horizontal_offset = direction
-	#if direction > 0:
-		#camera.drag_horizontal_offset = 
 	
 	if dead:
 		direction = null

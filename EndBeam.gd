@@ -13,6 +13,5 @@ func _process(delta):
 
 func _physics_process(delta):
 	if self.is_colliding() and self.get_collider().name == "Player":
-		print("Yay")
 		get_tree().change_scene_to_packed(next_scene)
 		
