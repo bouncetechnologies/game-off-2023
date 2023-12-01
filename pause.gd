@@ -21,4 +21,10 @@ func _unhandled_input(event):
 
 
 func _on_button_2_pressed():
+	$"/root/Data".deaths = 0
+	$"/root/Data".time = 0
+	$"/root/Data".minutes = 0
+	$"/root/Data".seconds = 0
+	$"/root/Data".msec = 0
+	
 	get_tree().change_scene_to_file("res://main_menu.tscn")
