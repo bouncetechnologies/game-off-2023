@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://cnn44vq5ru24k" path="res://dirt.png" id="23_dwvf7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3m1ei"]
+radius = 7.83104
 height = 30.25
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sthmf"]
