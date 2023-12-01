@@ -20,12 +20,12 @@ func _process(delta):
 func _physics_process(delta):
 	if wall_should_move and not $Player.dead:
 		print("moving")
-		$MovingWall.position.x += delta * 100
+		$MovingWall.position.x += delta * 175
 	
 	if $Player.dead:
 		wall_should_move = false
 		#$Camera2D.position = $Player.respawn
-		$MovingWall.position.x = $Player.respawn.x - 200
+		$MovingWall.position.x = $Player.respawn.x - 1000
 		$Timer.start()
 		
 
