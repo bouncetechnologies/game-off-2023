@@ -18,3 +18,7 @@ func _on_button_pressed():
 func _unhandled_input(event):
 	if event.is_action_pressed("paused"):
 		_is_paused = !_is_paused
+
+
+func _on_button_2_pressed():
+	get_tree().change_scene_to_file("res://main_menu.tscn")
