@@ -26,5 +26,5 @@ func _on_button_2_pressed():
 	$"/root/Data".minutes = 0
 	$"/root/Data".seconds = 0
 	$"/root/Data".msec = 0
-	
+	_is_paused = false
 	get_tree().change_scene_to_file("res://main_menu.tscn")
