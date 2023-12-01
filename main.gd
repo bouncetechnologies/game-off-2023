@@ -1,6 +1,7 @@
 extends Node2D
 
 var wall_should_move = false
+var wall_speed = 175
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,7 +22,7 @@ func _process(delta):
 func _physics_process(delta):
 	if wall_should_move and not $Player.dead:
 		print("moving")
-		$MovingWall.position.x += delta * 175
+		$MovingWall.position.x += delta * wall_speed
 	
 	if $Player.dead:
 		wall_should_move = false
