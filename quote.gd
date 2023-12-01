@@ -17,4 +17,4 @@ func _on_timer_timeout():
 
 
 func _on_timer_2_timeout():
-	$MarginContainer/VBoxContainer/Label2.label_settings.font_color = Color.WHITE
+	$MarginContainer/VBoxContainer/MarginContainer/Label2.label_settings.font_color = Color.WHITE
