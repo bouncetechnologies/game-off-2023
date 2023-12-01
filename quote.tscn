@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cib1mvmuh3gn7"]
 
 [ext_resource type="Script" path="res://quote.gd" id="1_vb6p6"]
-[ext_resource type="Theme" path="res://new_theme.tres" id="2_p3d33"]
+[ext_resource type="Theme" uid="uid://bi4cxkqwmik61" path="res://new_theme.tres" id="2_p3d33"]
 [ext_resource type="FontFile" uid="uid://stshaosvy2xu" path="res://FiraMono-Medium.ttf" id="3_fb2lg"]
 
 [sub_resource type="Gradient" id="Gradient_4fejr"]
