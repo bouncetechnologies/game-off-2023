@@ -19,6 +19,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	if wall_should_move and not $Player.dead:
+		print("moving")
 		$MovingWall.position.x += delta * 100
 	
 	if $Player.dead:
@@ -29,4 +30,5 @@ func _physics_process(delta):
 		
 
 func _on_timer_timeout():
-	wall_should_move = false
+	print("done")
+	wall_should_move = true
