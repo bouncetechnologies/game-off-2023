@@ -46,7 +46,7 @@ func _ready():
 	$AnimationPlayer.play_backwards("disolve")
 	$Life.play()
 	#sync_camera_zoom()
-	initialise_scale_update(ScaleChangeType.INCREASE)
+	scale = Vector2i(Scale.MEDIUM_SCALE, Scale.MEDIUM_SCALE)
 
 func _process(delta):
 	$GPUParticles2D.process_material.set("scale_min", scale.x)
@@ -79,6 +79,7 @@ func initialise_scale_update(change_type: ScaleChangeType):
 	if scale != Vector2(new_scale_value, new_scale_value):
 		scale_update_progress = 0.0
 
+@onready var previous_scale_pitch = $Scale.pitch_scale
 
 func update_scale(delta):
 	if scale_update_progress < 1.0:
@@ -86,12 +87,20 @@ func update_scale(delta):
 		scale_update_progress = clamp(scale_update_progress, 0.0, 1.0)
 		scale = lerp(scale, Vector2(new_scale_value, new_scale_value), scale_update_progress)
 		
+		print(1.0/new_scale_value)
+		$Scale.pitch_scale = lerp(previous_scale_pitch, sqrt(1.0/new_scale_value), scale_update_progress)
+		if not $Scale.playing:
+			#$Scale.seek(0.0)
+			$Scale.play()
 		#sync_camera_zoom()
 		
 		#velocity = Vector2.ZERO
 		#move_and_slide()
 		#$Scale.pitch_scale = 1.0/scale.x
 		#$Scale.play()
+	else:
+		$Scale.stop()
+		previous_scale_pitch = $Scale.pitch_scale
 
 
 func sync_camera_zoom():

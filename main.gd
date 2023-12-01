@@ -7,7 +7,6 @@ func _ready():
 	#$ParallaxBackground.scale = $Player.scale
 	var scale_factor = $Player.get_node("Camera2D").zoom.x
 	var new_scale = 4/scale_factor
-	print(new_scale)
 	$ParallaxBackground.scale = Vector2(new_scale, new_scale)
 	pass
 
