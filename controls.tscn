@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2xbwbibtwqu8"]
+
+[ext_resource type="Texture2D" uid="uid://c3qyij4pfue2m" path="res://assets/wasd.png" id="1_wofnj"]
+[ext_resource type="Texture2D" uid="uid://drej0qdicb35d" path="res://assets/ok.png" id="2_eheul"]
+[ext_resource type="Texture2D" uid="uid://b84u7xdrorg7y" path="res://assets/space.png" id="3_ytdv8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w62w2"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Wasd" type="Sprite2D" parent="."]
+position = Vector2(256, 488)
+texture = ExtResource("1_wofnj")
+
+[node name="Ok" type="Sprite2D" parent="."]
+position = Vector2(928, 488)
+texture = ExtResource("2_eheul")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 112.0
+offset_top = 496.0
+offset_right = 185.0
+offset_bottom = 519.0
+text = "Move left"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 328.0
+offset_top = 496.0
+offset_right = 412.0
+offset_bottom = 519.0
+text = "Move right"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 216.0
+offset_top = 416.0
+offset_right = 300.0
+offset_bottom = 439.0
+text = "Jump"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 210.0
+offset_top = 538.0
+offset_right = 301.0
+offset_bottom = 561.0
+text = "Crouch/Roll"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 831.0
+offset_top = 455.0
+offset_right = 904.0
+offset_bottom = 478.0
+text = "Scale up"
+label_settings = SubResource("LabelSettings_w62w2")
+horizontal_alignment = 2
+
+[node name="Label6" type="Label" parent="."]
+offset_left = 952.0
+offset_top = 498.0
+offset_right = 1039.0
+offset_bottom = 521.0
+text = "Scale down"
+
+[node name="Label7" type="Label" parent="."]
+offset_left = 531.0
+offset_top = 582.5
+offset_right = 622.0
+offset_bottom = 605.5
+text = "Jump"
+horizontal_alignment = 1
+
+[node name="Space" type="Sprite2D" parent="."]
+position = Vector2(576, 556.5)
+texture = ExtResource("3_ytdv8")
