@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddrwf0k1dix4w"]
+[gd_scene load_steps=9 format=3 uid="uid://ddrwf0k1dix4w"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_6jf6j"]
 [ext_resource type="Texture2D" uid="uid://bpmbo0oun56bi" path="res://bg.png" id="2_kv8h6"]
 [ext_resource type="AudioStream" uid="uid://dfeo7yvfped6g" path="res://DARKSOUP-1.wav" id="3_t6kex"]
+[ext_resource type="Theme" uid="uid://baj18fa2ew6ha" path="res://fira.tres" id="3_xb4ph"]
+[ext_resource type="Texture2D" uid="uid://c3qyij4pfue2m" path="res://assets/wasd.png" id="4_s0ycd"]
+[ext_resource type="Texture2D" uid="uid://drej0qdicb35d" path="res://assets/ok.png" id="5_cl1il"]
+[ext_resource type="Texture2D" uid="uid://b84u7xdrorg7y" path="res://assets/space.png" id="6_vum1a"]
 
-[sub_resource type="Theme" id="Theme_bnkex"]
+[sub_resource type="LabelSettings" id="LabelSettings_w62w2"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_6jf6j")
@@ -33,11 +37,79 @@ layout_mode = 2
 
 [node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = SubResource("Theme_bnkex")
-text = "Start"
+theme = ExtResource("3_xb4ph")
+text = "Start Game"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_t6kex")
 autoplay = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Wasd" type="Sprite2D" parent="Node2D"]
+position = Vector2(256, 488)
+texture = ExtResource("4_s0ycd")
+
+[node name="Ok" type="Sprite2D" parent="Node2D"]
+position = Vector2(928, 488)
+texture = ExtResource("5_cl1il")
+
+[node name="Label" type="Label" parent="Node2D"]
+offset_left = 112.0
+offset_top = 496.0
+offset_right = 185.0
+offset_bottom = 519.0
+text = "Move left"
+
+[node name="Label2" type="Label" parent="Node2D"]
+offset_left = 328.0
+offset_top = 496.0
+offset_right = 412.0
+offset_bottom = 519.0
+text = "Move right"
+
+[node name="Label3" type="Label" parent="Node2D"]
+offset_left = 216.0
+offset_top = 416.0
+offset_right = 300.0
+offset_bottom = 439.0
+text = "Jump"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Node2D"]
+offset_left = 210.0
+offset_top = 538.0
+offset_right = 301.0
+offset_bottom = 561.0
+text = "Crouch/Roll"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="Node2D"]
+offset_left = 831.0
+offset_top = 455.0
+offset_right = 904.0
+offset_bottom = 478.0
+text = "Scale up"
+label_settings = SubResource("LabelSettings_w62w2")
+horizontal_alignment = 2
+
+[node name="Label6" type="Label" parent="Node2D"]
+offset_left = 952.0
+offset_top = 498.0
+offset_right = 1039.0
+offset_bottom = 521.0
+text = "Scale down"
+
+[node name="Label7" type="Label" parent="Node2D"]
+offset_left = 531.0
+offset_top = 582.5
+offset_right = 622.0
+offset_bottom = 605.5
+text = "Jump"
+horizontal_alignment = 1
+
+[node name="Space" type="Sprite2D" parent="Node2D"]
+position = Vector2(576, 556.5)
+texture = ExtResource("6_vum1a")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
