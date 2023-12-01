@@ -14,3 +14,7 @@ func _process(delta):
 
 func _on_timer_timeout():
 	get_tree().change_scene_to_packed(initial_scene)
+
+
+func _on_timer_2_timeout():
+	$MarginContainer/VBoxContainer/Label2.label_settings.font_color = Color.WHITE

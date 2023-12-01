@@ -1,9 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddrwf0k1dix4w"]
+[gd_scene load_steps=4 format=3 uid="uid://ddrwf0k1dix4w"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_6jf6j"]
+[ext_resource type="Texture2D" uid="uid://bpmbo0oun56bi" path="res://bg.png" id="2_kv8h6"]
+
+[sub_resource type="Theme" id="Theme_bnkex"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_6jf6j")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 5760.0
+offset_bottom = 3240.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_kv8h6")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 8
@@ -12,9 +21,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -23.0
-offset_top = -20.0
+offset_top = 108.0
 offset_right = 23.0
-offset_bottom = 20.0
+offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -23,6 +32,7 @@ layout_mode = 2
 
 [node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = SubResource("Theme_bnkex")
 text = "Start"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
