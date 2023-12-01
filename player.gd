@@ -95,11 +95,6 @@ func update_scale(delta):
 		previous_scale_pitch = $Scale.pitch_scale
 
 
-func sync_camera_zoom():
-	camera.zoom.x = initial_zoom.x * 2.0/scale.x
-	camera.zoom.y = initial_zoom.y * 2.0/scale.y
-
-
 func _physics_process(delta):
 	if spike_check():
 		$Death.play()
