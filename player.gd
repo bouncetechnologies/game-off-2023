@@ -12,9 +12,6 @@ signal died
 @export var JUMP_CUT_VELOCITY = -50.0
 @export var JUMP_VELOCITY_WALL_SLIDE = -200.0
 @export var JUMP_VELOCITY_WALL_SLIDE_X = -150
-@export var MIN_SCALE = 1
-@export var MAX_SCALE = 10
-@export var SCALE_INCREMENT = 0.1
 
 enum Scale { SMALL_SCALE = 1, MEDIUM_SCALE = 5, BIG_SCALE = 10 }
 enum ScaleChangeType { INCREASE = 1, DECREASE = -1 }
