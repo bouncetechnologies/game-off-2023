@@ -45,6 +45,7 @@ func _ready():
 	animated_sprite.play("idle")
 	$AnimationPlayer.play_backwards("disolve")
 	$Life.play()
+	sync_camera_zoom()
 
 func _process(delta):
 	$GPUParticles2D.process_material.set("scale_min", scale.x)
@@ -84,13 +85,18 @@ func update_scale(delta):
 		scale_update_progress = clamp(scale_update_progress, 0.0, 1.0)
 		scale = lerp(scale, Vector2(new_scale_value, new_scale_value), scale_update_progress)
 		
-		camera.zoom.x = initial_zoom.x * 2.0/scale.x
-		camera.zoom.y = initial_zoom.y * 2.0/scale.y
+		sync_camera_zoom()
 		
 		#velocity = Vector2.ZERO
 		#move_and_slide()
 		#$Scale.pitch_scale = 1.0/scale.x
 		#$Scale.play()
+
+
+func sync_camera_zoom():
+	camera.zoom.x = initial_zoom.x * 2.0/scale.x
+	camera.zoom.y = initial_zoom.y * 2.0/scale.y
+
 
 func _physics_process(delta):
 	if spike_check():
