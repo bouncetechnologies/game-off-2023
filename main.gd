@@ -8,7 +8,8 @@ func _ready():
 	var scale_factor = $Player.get_node("Camera2D").zoom.x
 	var new_scale = 4/scale_factor
 	$ParallaxBackground.scale = Vector2(new_scale, new_scale)
-	pass
+	$"/root/Hud".visible = true
+	$"/root/Hud".end = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
