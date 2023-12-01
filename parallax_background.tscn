@@ -80,7 +80,7 @@ centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
 position = Vector2(-2.08165e-12, 2.08165e-12)
-motion_scale = Vector2(0.1, 0.1)
+motion_scale = Vector2(0.05, 0.05)
 motion_mirroring = Vector2(296.53, 2.08165e-12)
 
 [node name="Hills2" type="Sprite2D" parent="ParallaxLayer2"]
@@ -97,6 +97,7 @@ centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
+motion_scale = Vector2(0.13, 0.13)
 motion_mirroring = Vector2(296.81, 2.08165e-12)
 
 [node name="Hills1" type="Sprite2D" parent="ParallaxLayer3"]
