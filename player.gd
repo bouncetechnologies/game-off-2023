@@ -12,9 +12,6 @@ signal died
 @export var JUMP_CUT_VELOCITY = -50.0
 @export var JUMP_VELOCITY_WALL_SLIDE = -200.0
 @export var JUMP_VELOCITY_WALL_SLIDE_X = -150
-@export var MIN_SCALE = 1
-@export var MAX_SCALE = 10
-@export var SCALE_INCREMENT = 0.1
 
 enum Scale { SMALL_SCALE = 1, MEDIUM_SCALE = 5, BIG_SCALE = 10 }
 enum ScaleChangeType { INCREASE = 1, DECREASE = -1 }
@@ -45,7 +42,7 @@ func _ready():
 	animated_sprite.play("idle")
 	$AnimationPlayer.play_backwards("disolve")
 	$Life.play()
-	sync_camera_zoom()
+	scale = Vector2i(Scale.MEDIUM_SCALE, Scale.MEDIUM_SCALE)
 
 func _process(delta):
 	$GPUParticles2D.process_material.set("scale_min", scale.x)
@@ -78,6 +75,7 @@ func initialise_scale_update(change_type: ScaleChangeType):
 	if scale != Vector2(new_scale_value, new_scale_value):
 		scale_update_progress = 0.0
 
+@onready var previous_scale_pitch = $Scale.pitch_scale
 
 func update_scale(delta):
 	if scale_update_progress < 1.0:
@@ -85,17 +83,13 @@ func update_scale(delta):
 		scale_update_progress = clamp(scale_update_progress, 0.0, 1.0)
 		scale = lerp(scale, Vector2(new_scale_value, new_scale_value), scale_update_progress)
 		
-		sync_camera_zoom()
+		$Scale.pitch_scale = lerp(previous_scale_pitch, sqrt(1.0/new_scale_value), scale_update_progress)
+		if not $Scale.playing:
+			$Scale.play()
 		
-		#velocity = Vector2.ZERO
-		#move_and_slide()
-		#$Scale.pitch_scale = 1.0/scale.x
-		#$Scale.play()
-
-
-func sync_camera_zoom():
-	camera.zoom.x = initial_zoom.x * 2.0/scale.x
-	camera.zoom.y = initial_zoom.y * 2.0/scale.y
+	else:
+		$Scale.stop()
+		previous_scale_pitch = $Scale.pitch_scale
 
 
 func _physics_process(delta):
@@ -146,40 +140,12 @@ func _physics_process(delta):
 		died.emit()
 		
 	# Handle scaling
-	if Input.is_action_just_pressed("scale_up") and not $RayCastUp.is_colliding() and not ($RayCastLeft.is_colliding() and $RayCastRight.is_colliding()):
+	if Input.is_action_just_pressed("scale_up") and not $RayCastUp.is_colliding() and not ($RayCastWallJumpLeft.is_colliding() or $RayCastWallJumpRight.is_colliding()):
 		initialise_scale_update(ScaleChangeType.INCREASE)
 	elif Input.is_action_just_pressed("scale_down"):
 		initialise_scale_update(ScaleChangeType.DECREASE)
 	 
 	update_scale(delta)
-	
-	#if scale_update_progress < 1.0:
-		#velocity = Vector2.ZERO
-		#return
-	
-	## Handle scaling
-	#if Input.is_action_pressed("scale_up") and scale.x < MAX_SCALE and not $RayCastUp.is_colliding() and not ($RayCastLeft.is_colliding() and $RayCastRight.is_colliding()):
-		#scale.x = clamp(scale.x + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
-		#scale.y = clamp(scale.y + SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
-		#camera.zoom.x = initial_zoom.x * 1.0/scale.x
-		#camera.zoom.y = initial_zoom.y * 1.0/scale.y
-		#velocity = Vector2.ZERO
-		#move_and_slide()
-		#$Scale.pitch_scale = 1.0/scale.x
-		#$Scale.play()
-		#return
-	#elif Input.is_action_pressed("scale_down") and scale.x > MIN_SCALE:
-		#scale.x = clamp(scale.x - SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
-		#scale.y = clamp(scale.y - SCALE_INCREMENT, MIN_SCALE, MAX_SCALE)
-		#camera.zoom.x = initial_zoom.x * 1.0/scale.x
-		#camera.zoom.y = initial_zoom.y * 1.0/scale.y
-		#velocity = Vector2.ZERO
-		#move_and_slide()
-		#$Scale.pitch_scale = 1.0/scale.x
-		#$Scale.play()
-		#return
-	#else:
-		#$Scale.stop()
 		
 	if is_on_floor():
 		$JustWallJumpedTimer.start()
@@ -187,17 +153,12 @@ func _physics_process(delta):
 	
 	# Add the gravity.
 	if not is_on_floor():
-		var new_velocity_y = velocity.y + (gravity * delta * scale.y)
-		velocity.y = clamp(new_velocity_y, -INF, SPEED_TERMINAL_VELOCITY * scale.y)
+		var new_velocity_y = velocity.y + (gravity * delta * scale.x)
+		velocity.y = clamp(new_velocity_y, -INF, SPEED_TERMINAL_VELOCITY * scale.x)
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
-	
-	# Handle camera
-	#camera.drag_horizontal_offset = direction
-	#if direction > 0:
-		#camera.drag_horizontal_offset = 
 	
 	if dead:
 		direction = null
@@ -240,11 +201,11 @@ func _physics_process(delta):
 		var new_velocity_x = direction * SPEED * sqrt(scale.x)
 		if not is_on_wall_only() and $JustWallJumpedTimer.time_left == 0:
 			# Not on wall, and not recently wall jumped, so speed up normally.
-			velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL)
+			velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL * sqrt(scale.x))
 		elif is_on_wall_only() and direction != last_wall_touched:
 			# We're on a wall, and we're moving away from it.
 			animated_sprite.play("jump_descending")
-			velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL)
+			velocity.x = move_toward(velocity.x, new_velocity_x, SPEED_UP_INTERVAL * sqrt(scale.x))
 		elif not is_on_wall_only() and $JustWallJumpedTimer.time_left != 0 and direction == last_wall_touched:
 			# We've recently jumped off a wall, and we're trying to get back to the wall.
 			# Therefore we slowly give them back control of the direction so they can't
@@ -260,9 +221,9 @@ func _physics_process(delta):
 	else:
 		# No input direction, slow the player character down
 		if is_on_floor():
-			velocity.x = move_toward(velocity.x, 0, SPEED_DOWN_INTERVAL)
+			velocity.x = move_toward(velocity.x, 0, SPEED_DOWN_INTERVAL * sqrt(scale.x))
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED_DOWN_INTERVAL_AIRBORNE)
+			velocity.x = move_toward(velocity.x, 0, SPEED_DOWN_INTERVAL_AIRBORNE * sqrt(scale.x))
 
 	# Handle jump ascend
 	if Input.is_action_just_pressed("jump") and is_on_floor():
