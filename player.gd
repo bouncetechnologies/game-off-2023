@@ -45,7 +45,6 @@ func _ready():
 	animated_sprite.play("idle")
 	$AnimationPlayer.play_backwards("disolve")
 	$Life.play()
-	#sync_camera_zoom()
 	scale = Vector2i(Scale.MEDIUM_SCALE, Scale.MEDIUM_SCALE)
 
 func _process(delta):
